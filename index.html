@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta charset="utf-8">
+	<title>Untold Stories Mission Editor</title>
+	<meta name="description" content="Web frontend for making The Secret World missions for the Untold Stories mod.">
+
+	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="lib/bootstrap/ripples.min.css" rel="stylesheet">
+	<link href="lib/bootstrap/material-wfont.min.css" rel="stylesheet">
+	<link href="lib/jquery/jquery.dropdown.css" rel="stylesheet">
+	<link href="lib/select2/select2.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+	<script src="lib/jquery/jquery-1.11.2.min.js"></script>
+	<script src="lib/jquery/jquery.scrollto.js"></script>
+	<script src="lib/knockout/knockout-3.3.0.min.js"></script>
+	<script src="lib/knockout/knockout-custom.js"></script>
+	<script src="lib/bootstrap/bootstrap.min.js"></script>
+	<script src="lib/bootstrap/material.min.js"></script>
+	<script src="lib/bootstrap/ripples.min.js"></script>
+	<script src="lib/bootstrap/bootstrap-contextmenu.js"></script>
+	<script src="lib/jquery/jquery.dropdown.js"></script>
+	<script src="lib/select2/select2.min.js"></script>
+	<script src="lib/marknote/marknote.js"></script>
+	<script src="lib/filesaver/blob.js"></script>
+	<script src="lib/filesaver/filesaver.min.js"></script>
+	<script src="js/playfields.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/init.js"></script>
+</head>
+<body>
+	<noscript>
+	    <style type="text/css">
+	        #page-container { display: none; }
+	    </style>
+	    	<h1 class="text-center">You don't have javascript enabled!</h1>
+	    	<h3 class="text-center">This site is built entirely in javascript. You must enable it to use this site.</h3>
+	</noscript>
+
+	<div id="page-container" class="container">
+		<div class="well" style="padding-bottom: 30px;">
+			<!-- HEADER -->
+			<div class="row">
+				<div class="col-md-4">
+					<h2 style="margin: 0;"><span class="label label-primary">Untold Stories Mission Editor<sup>v1.1</sup></span></h2>
+				</div>
+				<div class="col-md-4">
+					<div class="checkbox checkbox-primary" style="display: inline-block; margin-right: 25px;">
+					    <label>
+					      <input id="debugMode" type="checkbox" data-bind="checked: debugMode">Debug Mode</input>
+					    </label>
+				  	</div>
+					<label class="control-label" for="debugTier" style="margin-right: 10px;">Debug Tier:</label>
+					<select id="debugTier" class="form-control select" data-bind="
+						options: userTiers,
+						optionsValue: 'index',
+						optionsText: function(item) { return item.index() + '. ' + item.text; },
+						value: debugTier">
+					</select>
+				</div>
+				<div class="col-md-4">
+					<label class="control-label" for="missionTitle">Mission Title:</label>
+					<input id="missionTitle" class="form-control" data-bind="textInput: missionTitle"></input>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-8">
+					<input id="fileBrowser" type="file" style="display: none;" data-bind="event: { change: readFileContents }" />
+					<button type="button" class="btn btn-primary" style="margin-right: 30px;" data-bind="
+						click: function() { $('#fileBrowser').click(); }">
+							Import
+					</button>
+					<button type="button" class="btn btn-primary" data-bind="click: exportToFile">Export</button>
+				</div>
+			</div>
+			<hr class="soften" />
+			<!-- /HEADER -->
+
+			<!-- TIERS -->
+			<div class="row">
+				<div class="col-md-8">
+					<ul id="tiersList" class="nav nav-pills">
+						<!-- ko ifnot: userTiers().length -->
+							<li role="presentation" class="active"><a href="#" style="pointer-events: none;">Add tiers...</a></li>
+						<!-- /ko -->
+						<!-- ko foreach: userTiers -->
+					  		<li role="presentation" class="context-menu"
+					  			data-bind="event: { contextmenu: $root.contextMenuShown }, click: $root.changeTier">
+					  				<a href="#" data-bind="text: index() + '. ' + text"></a>
+					  		</li>
+					  	<!-- /ko -->
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<div class="btn-group">
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					    Add Tier <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+					  	<!-- ko foreach: tiers -->
+					  		<li><a href="#" data-bind="text: $data, click: $root.addTier"></a></li>
+					  	<!-- /ko -->
+					  </ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<!-- /TIERS -->
+
+			<!-- TIER CONTENT -->
+				<!-- ko if: selectedTier -->
+					<div id="tierContent" data-bind="template:
+						{
+							name: selectedTier().text.toLowerCase().replace(' ', '_') + '_template',
+							data: selectedTier().tierData,
+							afterRender: function() {
+								$.material.init();
+								$('.select').dropdown({'dropdownClass': ''});
+								$('.select2').select2();
+							}
+						}">
+					</div>
+				<!-- /ko -->
+			<!-- /TIER CONTENT -->
+		</div>
+
+		<!-- FOOTER -->
+			<p class="pull-left text-muted small">Mission Editor by Solon.</p>
+			<p class="pull-right text-muted small">Big thanks to SuperJenius for the Untold Stories mod.</p>
+		<!-- /FOOTER -->
+	</div>
+
+	<!-- CONTEXT MENU -->
+	<div id="context-menu">
+		<ul class="dropdown-menu" role="menu">
+			<li id="moveLeft"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-arrow-left"></i> Move left</a></li>
+			<li id="moveRight"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-arrow-right"></i> Move right</a></li>
+			<!-- <li><a href="#" tabindex="-1"><i class="glyphicon glyphicon-plus"></i> Add tier left</a></li> -->
+			<!-- <li><a href="#" tabindex="-1"><i class="glyphicon glyphicon-plus"></i> Add tier right</a></li> -->
+			<li id="deleteTier"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-trash text-danger"></i> Delete</a></li>
+		</ul>
+	</div>
+	<!-- /CONTEXT MENU -->
+
+	<!-- TEMPLATES CONTAINER -->
+		<div id="templates-container"></div>
+	<!-- /TEMPLATES CONTAINER -->
+</body>
+</html>

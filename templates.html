@@ -1,0 +1,1231 @@
+<html>
+	<!-- TARGET TIER TEMPLATE -->
+	<script type="text/html" id="target_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-4">
+				<label class="control-label" for="targetName">Target Name:</label>
+				<input id="targetName" class="form-control" data-bind="textInput: targetName"
+					data-hint="The name of the character to be targeted (case sensitive).">
+				</input>
+			</div>
+			<div class="col-md-4">
+				<div class="checkbox checkbox-danger">
+				    <label>
+				      <input id="offensiveTarget" type="checkbox" data-bind="checked: isOffensiveTarget">Offensive Target</input>
+				    </label>
+			  	</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- /TARGET TIER TEMPLATE -->
+
+	<!-- LOCATION TIER TEMPLATE -->
+	<script type="text/html" id="location_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-12">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-3">
+				<label class="control-label" for="tierPlayField">Playfield (zone):</label>
+				<select id="tierPlayField" class="form-control select2"
+					data-bind="options: playFields, optionsValue: 'id', optionsText: 'text', value: playField">
+				</select>
+			</div>
+			<div class="col-md-3">
+				<label class="control-label" for="X_Coord">X (map horizontal coordinate):</label>
+				<input id="X_Coord" class="form-control" data-bind="textInput: X_Coord"
+					data-hint="The map horizontal coordinate (number)."></input>
+			</div>
+			<div class="col-md-3">
+				<label class="control-label" for="Z_Coord">Z (map vertical coordinate):</label>
+				<input id="Z_Coord" class="form-control" data-bind="textInput: Z_Coord"
+					data-hint="The map vertical coordinate (number).">
+				</input>
+			</div>
+			<div class="col-md-3">
+				<label class="control-label" for="Y_Coord">Y (height coordinate):</label>
+				<input id="Y_Coord" class="form-control" data-bind="textInput: Y_Coord"
+					data-hint="The height coordinate (number).">
+				</input>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-md-4">
+				<label class="control-label" for="distance">Distance:</label>
+				<input id="distance" class="form-control" data-bind="textInput: distance"
+					data-hint="The distance to indicate the player is within range of the desired X and Z coordinates (number).">
+				</input>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="distance">yDistance:</label>
+				<input id="distance" class="form-control" data-bind="textInput: yDistance"
+					data-hint="The distance to indicate the player is within range of the desired Y coordinate (number).">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- /LOCATION TIER TEMPLATE -->
+
+	<!-- KILL TIER TEMPLATE -->
+	<script type="text/html" id="kill_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-md-6">
+				<label class="control-label" for="targetName">Target Name(s):</label>
+				<input id="targetName" class="form-control" data-bind="textInput: targetName"
+					data-hint="The name(s) of enemies/monsters that count as a kill.
+								If multiple enemy types count as a kill, include the full name of the enemy,
+								with each name separated by a comma.">
+				</input>
+			</div>
+			<div class="col-md-2">
+				<label class="control-label" for="targetKills">Target Kills:</label>
+				<input id="targetKills" class="form-control" data-bind="textInput: targetKills"
+					data-hint="The number of kills required to complete the tier.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- KILL TIER TEMPLATE -->
+
+	<!-- ADD ITEM TEMPLATE -->
+	<script type="text/html" id="add_item_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label class="control-label" for="itemName">Item Name(s):</label>
+				<input id="itemName" class="form-control" data-bind="textInput: itemName"
+					data-hint="The name of the item that should be acquired by the user.
+								If one of several items can be acquired,
+								then the full names of the items should be separated by commas.">
+				</input>
+			</div>
+			<div class="col-md-2">
+				<div class="checkbox checkbox-primary">
+				    <label>
+				      <input id="autoUseItem" type="checkbox" data-bind="checked: autoUseItem">Auto Use Item</input>
+				    </label>
+			  	</div>
+			  	<p class="hint small">If checked, the item will automatically be used when it is acquired.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- /ADD ITEM TEMPLATE -->
+
+	<!-- USE ITEM TEMPLATE -->
+	<script type="text/html" id="use_item_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="itemName">Item Name:</label>
+				<input id="itemName" class="form-control" data-bind="textInput: itemName"
+					data-hint="The name of the item to be used. Only a single item can be specified,
+								and it must exist in the player’s inventory.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- /USE ITEM TEMPLATE -->
+
+	<!-- BROWSER TEMPLATE -->
+	<script type="text/html" id="browser_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="URL">URL:</label>
+				<input id="URL" class="form-control" data-bind="textInput: URL"
+					data-hint="The web address of the page to be displayed.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label class="control-label" for="browserTitle">Browser Title (optional):</label>
+				<input id="browserTitle" class="form-control" data-bind="textInput: browserTitle"
+					data-hint="The title to be displayed in the web browser title bar.
+								If omitted, the default “WEB BROWSER” appears.">
+				</input>
+			</div>
+			<div class="col-md-2">
+				<div class="checkbox checkbox-primary">
+				    <label>
+				      <input id="hideAddress" type="checkbox" data-bind="checked: hideAddress">Hide Address</input>
+				    </label>
+			  	</div>
+			  	<p class="hint small">If checked, the browser address box and navigation buttons will be hidden.</p>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-4">
+				<label class="control-label" for="width">Width (optional):</label>
+				<input id="width" class="form-control" data-bind="textInput: width"
+					data-hint="The width of the browser window.">
+				</input>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="height">Height (optional):</label>
+				<input id="height" class="form-control" data-bind="textInput: height"
+					data-hint="The height of the browser window.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- /BROWSER TEMPLATE -->
+
+	<!-- AUDIO TEMPLATE -->
+	<script type="text/html" id="audio_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="URL">URL:</label>
+				<input id="URL" class="form-control" data-bind="textInput: URL"
+					data-hint="Audio files are downloaded from the web. This is the URL to the file.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="volume">(Optional) Volume (0-100):</label>
+				<input id="volume" class="form-control" data-bind="textInput: volume"
+					data-hint="The volume to play the file (0-100). If omitted, the audio is played at full volume (100).">
+				</input>
+			</div>
+			<div class="col-md-2">
+				<div class="checkbox checkbox-primary">
+				    <label>
+				      <input id="preload" type="checkbox" data-bind="checked: preload">Preload (optional)</input>
+				    </label>
+			  	</div>
+			  	<p class="hint small">If checked, the file is preloaded instead of being played immediately.</p>
+			</div>
+			<div class="col-md-2">
+				<div class="checkbox checkbox-primary">
+				    <label>
+				      <input id="loop" type="checkbox" data-bind="checked: loop">Loop (optional)</input>
+				    </label>
+			  	</div>
+			  	<p class="hint small">If checked, the audio will loop continuously.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+	</script>
+	<!-- /AUDIO TEMPLATE -->
+
+	<!-- STOP AUDIO TEMPLATE -->
+	<script type="text/html" id="stop_audio_template">
+		<p class="text-primary">This tier stops audio that started playing in a previous audio tier. Nothing to configure here.</p>
+	</script>
+	<!-- STOP AUDIO TEMPLATE -->
+
+	<!-- DIALOG TEMPLATE -->
+	<script type="text/html" id="dialog_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="speed">Speed (optional):</label>
+				<input id="speed" class="form-control" data-bind="textInput: speed"
+					data-hint="Allows you to control the pace of the conversation.
+								The default is 3, which means roughly 3 words per second plus some padding.">
+				</input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+		<hr />
+
+		<div class="btn-group" style="margin-bottom: 30px;">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    Add <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_line'); }">
+			  			Dialog Line
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_fadeout'); }">
+			  			Fade Out
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_fadein'); }">
+			  			Fade In
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_audio'); }">
+			  			Audio
+			  		</a>
+			  	</li>
+			  </ul>
+		</div>
+
+		<div class="row" data-bind="foreach: {
+				data: dialogData,
+				beforeRemove: function(element) { $(element).slideUp(); },
+				afterAdd: function(element) {
+					var $element = $(element);
+					if ( $element.is('div') ) {
+						$.material.init();
+						$('.select').dropdown({'dropdownClass': ''});
+						if (!suppressAnimations) {
+							$element.hide().slideDown();
+							$('html, body').scrollTo($element);
+						}
+					}
+				}
+			}">
+				<!-- ko template: { name: type + '_template', data: data } --><!-- /ko -->
+		</div>
+
+		<!-- ko if: dialogData().length > 0 -->
+		<div class="btn-group dropup" style="margin-bottom: 30px;">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    Add <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_line'); }">
+			  			Dialog Line
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_fadeout'); }">
+			  			Fade Out
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_fadein'); }">
+			  			Fade In
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addDialogData(data, event, 'dialog_audio'); }">
+			  			Audio
+			  		</a>
+			  	</li>
+			  </ul>
+		</div>
+		<!-- /ko -->
+	</script>
+
+	<script type="text/html" id="dialog_line_template">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span style="margin-right: 50px;">Dialog Line</span>
+		        	<div class="dropdown" style="display: inline-block;">
+			        	<span class="pointer dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			        		<span>Add special expression</span> <span class="caret"></span>
+			        	</span>
+			        	<ul class="dropdown-menu" role="menu">
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '{{m_Player.m_Name}}'); }">Player Name</a>
+			        		</li>
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '{{m_Player.m_Faction}}'); }">Player Faction</a>
+			        		</li>
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '{{m_Player.m_Gender}}'); }">Player Gender</a>
+			        		</li>
+			        		<li class="divider"></li>
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '\\n'); }">New Line</a>
+			        		</li>
+			        	</ul>
+			        </div>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].dialogData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		        <div class="row" style="margin-bottom: 30px;">
+		        	<div class="col-md-12">
+						<label class="control-label">Dialog Line:</label>
+						<input class="form-control" data-bind="textInput: line"
+							data-hint="The line of dialog to appear in the subtitle.">
+						</input>
+					</div>
+		        </div>
+		        <div class="row" style="margin-bottom: 30px;">
+		        	<div class="col-md-4">
+						<label class="control-label">Duration (optional):</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="If you want to override the calculated duration for a specific line,
+										you can set it with this attribute. The duration is specified in seconds.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		        </div>
+		    </div>
+		    </div>
+		</div>
+    </script>
+
+    <script type="text/html" id="dialog_fadeout_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Fade Out</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].dialogData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 30px;">
+		    		<div class="col-md-4">
+						<label class="control-label">Duration:</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="Indicates how long the fade should take. The duration is specified in seconds.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		    	</div>
+		    </div>
+    		</div>
+    	</div>
+    </script>
+
+    <script type="text/html" id="dialog_fadein_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Fade In</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].dialogData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 30px;">
+		    		<div class="col-md-4">
+						<label class="control-label">Duration:</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="Indicates how long the fade should take. The duration is specified in seconds.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		    	</div>
+		    </div>
+		    </div>
+    	</div>
+    </script>
+
+    <script type="text/html" id="dialog_audio_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Audio</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].dialogData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 30px;">
+		    		<div class="col-md-8">
+						<label class="control-label">URL:</label>
+						<input class="form-control" data-bind="textInput: URL"
+							data-hint="Audio files are downloaded from the web. This is the URL to the file.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">(Optional) Volume (0-100):</label>
+						<input class="form-control" data-bind="textInput: volume"
+							data-hint="The volume to play the file (0-100). If omitted, the audio is played at full volume (100).">
+						</input>
+					</div>
+		    	</div>
+		    	<div class="row" style="margin-bottom: 20px;">
+		    		<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		    	</div>
+		    </div>
+		    </div>
+    	</div>
+    </script>
+	<!-- /DIALOG TEMPLATE -->
+
+	<!-- CINEMATIC TEMPLATE -->
+	<script type="text/html" id="cinematic_template">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="col-md-8">
+				<label class="control-label" for="tierDescription">Description:</label>
+				<input id="tierDescription" class="form-control" data-bind="textInput: description"
+					data-hint="The tier description will appear in the mission status window.">
+				</input>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierPlayField">Playfield (zone):</label>
+				<select id="tierPlayField" class="form-control select2" style="margin-bottom: 30px;"
+					data-bind="options: playFields, optionsValue: 'id', optionsText: 'text', value: playField">
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="control-label" for="tierFaction">Tier Faction:</label>
+				<select id="tierFaction" class="form-control select" data-bind="value: faction">
+					<option value="">Any Faction</option>
+					<option value="Templar">Templar</option>
+					<option value="Illuminati">Illuminati</option>
+					<option value="Dragon">Dragon</option>
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="control-label" for="tierGender">Tier Gender:</label>
+				<select id="tierGender" class="form-control select" data-bind="value: gender">
+					<option value="">Any Gender</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+		</div>
+		<hr />
+
+		<div class="btn-group" style="margin-bottom: 30px;">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    Add <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_camera'); }">
+			  			Camera Movement
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_facetarget'); }">
+			  			Face Target
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_facenpc'); }">
+			  			Face NPC
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_facecoords'); }">
+			  			Face Coordinates
+			  		</a>
+			  	</li>
+			  	<li class="divider"></li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_dialog_line'); }">
+			  			Dialog Line
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_fadeout'); }">
+			  			Fade Out
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_fadein'); }">
+			  			Fade In
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_audio'); }">
+			  			Audio
+			  		</a>
+			  	</li>
+			  </ul>
+		</div>
+
+		<div class="row" data-bind="foreach: {
+				data: cinematicData,
+				beforeRemove: function(element) { $(element).slideUp(); },
+				afterAdd: function(element) {
+					var $element = $(element);
+					if ( $element.is('div') ) {
+						$.material.init();
+						$('.select').dropdown({'dropdownClass': ''});
+						if (!suppressAnimations) {
+							$element.hide().slideDown();
+							$('html, body').scrollTo($element);
+						}
+					}
+				}
+			}">
+				<!-- ko template: { name: type + '_template', data: data } --><!-- /ko -->
+		</div>
+
+		<!-- ko if: cinematicData().length > 0 -->
+		<div class="btn-group dropup" style="margin-bottom: 30px;">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    Add <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_camera'); }">
+			  			Camera Movement
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_facetarget'); }">
+			  			Face Target
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_facenpc'); }">
+			  			Face NPC
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_facecoords'); }">
+			  			Face Coordinates
+			  		</a>
+			  	</li>
+			  	<li class="divider"></li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_dialog_line'); }">
+			  			Dialog Line
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_fadeout'); }">
+			  			Fade Out
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_fadein'); }">
+			  			Fade In
+			  		</a>
+			  	</li>
+			  	<li>
+			  		<a href="#" data-bind="click: function(data, event) { $root.addCinematicData(data, event, 'cinematic_audio'); }">
+			  			Audio
+			  		</a>
+			  	</li>
+			  </ul>
+		</div>
+		<!-- /ko -->
+	</script>
+
+	<script type="text/html" id="cinematic_dialog_line_template">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span style="margin-right: 50px;">Dialog Line</span>
+		        	<div class="dropdown" style="display: inline-block;">
+			        	<span class="pointer dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			        		<span>Add special expression</span> <span class="caret"></span>
+			        	</span>
+			        	<ul class="dropdown-menu" role="menu">
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '{{m_Player.m_Name}}'); }">Player Name</a>
+			        		</li>
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '{{m_Player.m_Faction}}'); }">Player Faction</a>
+			        		</li>
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '{{m_Player.m_Gender}}'); }">Player Gender</a>
+			        		</li>
+			        		<li class="divider"></li>
+			        		<li>
+			        			<a href="#" data-bind="click: function() { line(line() + '\\n'); }">New Line</a>
+			        		</li>
+			        	</ul>
+			        </div>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		        <div class="row" style="margin-bottom: 30px;">
+		        	<div class="col-md-12">
+						<label class="control-label">Dialog Line:</label>
+						<input class="form-control" data-bind="textInput: line"
+							data-hint="The line of dialog to appear in the subtitle.">
+						</input>
+					</div>
+		        </div>
+		        <div class="row" style="margin-bottom: 30px;">
+		        	<div class="col-md-4">
+						<label class="control-label">Duration (optional):</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="If you want to override the calculated duration for a specific line,
+										you can set it with this attribute. The duration is specified in seconds.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		        </div>
+		    </div>
+		    </div>
+		</div>
+    </script>
+
+    <script type="text/html" id="cinematic_fadeout_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Fade Out</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 30px;">
+		    		<div class="col-md-4">
+						<label class="control-label">Duration:</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="Indicates how long the fade should take. The duration is specified in seconds.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		    	</div>
+		    </div>
+		    </div>
+    	</div>
+    </script>
+
+    <script type="text/html" id="cinematic_fadein_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Fade In</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 30px;">
+		    		<div class="col-md-4">
+						<label class="control-label">Duration:</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="Indicates how long the fade should take. The duration is specified in seconds.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		    	</div>
+		    </div>
+		    </div>
+    	</div>
+    </script>
+
+    <script type="text/html" id="cinematic_audio_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Audio</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 30px;">
+		    		<div class="col-md-8">
+						<label class="control-label">URL:</label>
+						<input class="form-control" data-bind="textInput: URL"
+							data-hint="Audio files are downloaded from the web. This is the URL to the file.">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">(Optional) Volume (0-100):</label>
+						<input class="form-control" data-bind="textInput: volume"
+							data-hint="The volume to play the file (0-100). If omitted, the audio is played at full volume (100).">
+						</input>
+					</div>
+		    	</div>
+		    	<div class="row" style="margin-bottom: 20px;">
+		    		<div class="col-md-4">
+						<label class="control-label">Faction:</label>
+						<select class="form-control select" data-bind="value: faction">
+							<option value="">Any Faction</option>
+							<option value="Templar">Templar</option>
+							<option value="Illuminati">Illuminati</option>
+							<option value="Dragon">Dragon</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Gender:</label>
+						<select class="form-control select" data-bind="value: gender">
+							<option value="">Any Gender</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+		    	</div>
+		    </div>
+		    </div>
+    	</div>
+    </script>
+
+    <script type="text/html" id="cinematic_camera_template">
+    	<div class="col-md-12">
+    		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Camera Movement</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 50px;">
+		    		<div class="col-md-6">
+						<label class="control-label">Duration:</label>
+						<input class="form-control" data-bind="textInput: duration"
+							data-hint="This is the amount of time (in milliseconds) designated for the camera to move from its
+										current position to the specified position.">
+						</input>
+					</div>
+					<div class="col-md-6">
+						<label class="control-label">Ease function:</label>
+						<select class="form-control select" data-bind="value: ease">
+							<option value="">None</option>
+							<option value="Regular.easeIn">Regular.easeIn</option>
+							<option value="Regular.easeOut">Regular.easeOut</option>
+							<option value="Regular.easeInOut">Regular.easeInOut</option>
+							<option value="Strong.easeIn">Strong.easeIn</option>
+							<option value="Strong.easeOut">Strong.easeOut</option>
+							<option value="Strong.easeInOut">Strong.easeInOut</option>
+							<option value="Elastic.easeIn">Elastic.easeIn</option>
+							<option value="Elastic.easeOut">Elastic.easeOut</option>
+							<option value="Elastic.easeInOut">Elastic.easeInOut</option>
+							<option value="Bounce.easeIn">Bounce.easeIn</option>
+							<option value="Bounce.easeOut">Bounce.easeOut</option>
+							<option value="Bounce.easeInOut">Bounce.easeInOut</option>
+							<option value="Back.easeIn">Back.easeIn</option>
+							<option value="Back.easeOut">Back.easeOut</option>
+							<option value="Back.easeInOut">Back.easeInOut</option>
+						</select>
+					</div>
+		    	</div>
+		    	<div class="row" style="margin-bottom: 30px;">
+			    	<div class="col-md-4">
+						<label class="control-label">X (horizontal coordinate):</label>
+						<input class="form-control" data-bind="textInput: posX"
+							data-hint="The horizontal coordinate where the camera is placed (number)."></input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Z (vertical coordinate):</label>
+						<input class="form-control" data-bind="textInput: posZ"
+							data-hint="The vertical coordinate where the camera is placed (number)."></input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Y (height coordinate):</label>
+						<input class="form-control" data-bind="textInput: posY"
+							data-hint="The height coordinate where the camera is placed (number)."></input>
+					</div>
+		    	</div>
+		    	<div class="row" style="margin-bottom: 50px;">
+			    	<div class="col-md-4">
+						<label class="control-label">Target X:</label>
+						<input class="form-control" data-bind="textInput: targetX"
+							data-hint="The horizontal coordinate the camera will focus on (number).
+										Set this to -99 to focus on the player (targetY and targetZ will be ignored).">
+						</input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Target Z:</label>
+						<input class="form-control" data-bind="textInput: targetZ"
+							data-hint="The vertical coordinate the camera will focus on (number)."></input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Target Y:</label>
+						<input class="form-control" data-bind="textInput: targetY"
+							data-hint="The height coordinate the camera will focus on (number)."></input>
+					</div>
+		    	</div>
+		    </div>
+		    </div>
+    	</div>
+    </script>
+
+    <script type="text/html" id="cinematic_facetarget_template">
+    	<div class="col-md-12">
+			<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Face Target</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<p class="text-primary">Sets the player rotation to face the currently selected defensive target/NPC. Nothing to configure here.</p>
+		    </div>
+		    </div>
+		</div>
+	</script>
+
+	<script type="text/html" id="cinematic_facenpc_template">
+    	<div class="col-md-12">
+			<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Face NPC</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 20px;">
+			    	<div class="col-md-12">
+						<label class="control-label">NPC Name:</label>
+						<input class="form-control" data-bind="textInput: name"
+							data-hint="Set the player rotation to face the named NPC. This is useful for having the player
+										face named NPCs that are not targetable, or that otherwise would not be the currently
+										selected target.">
+						</input>
+					</div>
+				</div>
+		    </div>
+		    </div>
+		</div>
+	</script>
+
+	<script type="text/html" id="cinematic_facecoords_template">
+    	<div class="col-md-12">
+			<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		        	<span>Face Coordinates</span>
+		        	<span class="pull-right pointer" data-bind="click: function(data) { $parents[1].cinematicData.remove($parent); }">
+		        		<i class="glyphicon glyphicon-trash text-danger"></i> Delete
+		        	</span>
+		        </h3>
+		    </div>
+		    <div class="panel-body" style="margin-top: 10px;">
+		    	<div class="row" style="margin-bottom: 20px;">
+			    	<div class="col-md-4">
+						<label class="control-label">X (horizontal coordinate):</label>
+						<input class="form-control" data-bind="textInput: X_Coord"
+							data-hint="The horizontal coordinate the player should face (number)."></input>
+					</div>
+					<div class="col-md-4">
+						<label class="control-label">Z (vertical coordinate):</label>
+						<input class="form-control" data-bind="textInput: Z_Coord"
+							data-hint="The vertical coordinate the player should face (number)."></input>
+					</div>
+				</div>
+		    </div>
+		    </div>
+		</div>
+	</script>
+	<!-- /CINEMATIC TEMPLATE -->
+</html>
