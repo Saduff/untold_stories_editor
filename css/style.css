@@ -21,6 +21,10 @@ hr.soften {
   cursor: pointer;
 }
 
+.dropdown-menu i {
+	margin-right: 5px;
+}
+
 .dropdownjs::after {
 	content: "\e8a3" !important;
 }
