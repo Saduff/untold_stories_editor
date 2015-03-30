@@ -25,6 +25,16 @@ hr.soften {
 	margin-right: 5px;
 }
 
+#project_title h2 {
+	margin: 0px 0px 25px 0px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	#project_title {
+		width: 100%;
+	}
+}
+
 .dropdownjs::after {
 	content: "\e8a3" !important;
 }
