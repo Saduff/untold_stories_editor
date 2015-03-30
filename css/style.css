@@ -20,3 +20,11 @@ hr.soften {
 .pointer {
   cursor: pointer;
 }
+
+.dropdownjs::after {
+	content: "\e8a3" !important;
+}
+
+.checkbox .checkbox-material .check {
+	margin-right: 8px;
+}
