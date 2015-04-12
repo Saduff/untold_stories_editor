@@ -61,7 +61,7 @@
 					 	<label>
 						    <input id="debugMode" type="checkbox" data-bind="checked: debugMode">
 						    <span class="lever"></span>
-						    <span>Debug Mode</span>
+						    <span class="nowrap">Debug Mode</span>
 					  	</label>
 					</div>
 				</div>
@@ -90,10 +90,10 @@
 			<!-- TIERS -->
 			<div class="row">
 				<div class="col m9">
+					<!-- ko ifnot: userTiers().length -->
+						<p class="teal-text lighten-1">Add tiers...</p>
+					<!-- /ko -->
 					<ul id="tiersList" class="nav nav-pills">
-						<!-- ko ifnot: userTiers().length -->
-							<li role="presentation" class="active"><a href="#" style="pointer-events: none;">Add tiers...</a></li>
-						<!-- /ko -->
 						<!-- ko foreach: userTiers -->
 					  		<li role="presentation" class="context-menu"
 					  			data-bind="event: { contextmenu: $root.contextMenuShown }, click: $root.changeTier">

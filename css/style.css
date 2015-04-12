@@ -3,6 +3,10 @@
 	cursor: pointer;
 }
 
+.nowrap {
+	white-space: nowrap;
+}
+
 .input-field {
 	margin-top: 22px;
 }
@@ -42,4 +46,17 @@ label {
 	vertical-align: top;
 	margin-top: -15px;
 	margin-left: 15px;
+}
+
+@media (max-width: 1760px) {
+	#debugTier .select-wrapper {
+		margin-left: auto;
+	}
+}
+
+@media (max-width: 1660px) {
+	#debugTier .select-wrapper {
+		margin-left: auto;
+		margin-top: auto;
+	}
 }
