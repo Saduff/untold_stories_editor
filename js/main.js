@@ -16,6 +16,8 @@ function mainViewModel()
 	self.userTiers.subscribe(function(){
 		if (!self.userTiers().length) {
 			$("#context-menu").hide();
+			$('#debugTier .select-dropdown').val('');
+			$('#debugTier ul li span').text('');
 		}
 
 		for (var i = 0; i < self.userTiers().length; i++) {

@@ -1,81 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta charset="utf-8"/>
 	<title>Untold Stories Mission Editor</title>
-	<meta name="description" content="Web frontend for making The Secret World missions for the Untold Stories mod.">
+	<meta name="description" content="Web frontend for making The Secret World missions for the Untold Stories mod."/>
 
-	<link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="lib/bootstrap/roboto.min.css" rel="stylesheet">
-	<link href="lib/bootstrap/ripples.min.css" rel="stylesheet">
-	<link href="lib/bootstrap/material.min.css" rel="stylesheet">
-	<link href="lib/jquery/jquery.dropdown.css" rel="stylesheet">
-	<link href="lib/select2/select2.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="lib/select2/select2.min.css"/>
+	<link type="text/css" rel="stylesheet" href="lib/materialize/materialize.min.css" media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="lib/bootstrap/bootstrap-custom.css"/>
+	<link type="text/css" rel="stylesheet" href="lib/bootstrap/bootstrap-contextmenu.css"/>
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 
-	<script src="lib/jquery/jquery-1.11.2.min.js"></script>
-	<script src="lib/jquery/jquery.scrollto.js"></script>
-	<script src="lib/knockout/knockout-3.3.0.min.js"></script>
-	<script src="lib/knockout/knockout-custom.js"></script>
-	<script src="lib/bootstrap/bootstrap.min.js"></script>
-	<script src="lib/bootstrap/ripples.min.js"></script>
-	<script src="lib/bootstrap/material.min.js"></script>
-	<script src="lib/bootstrap/bootstrap-contextmenu.js"></script>
-	<script src="lib/jquery/jquery.dropdown.js"></script>
-	<script src="lib/select2/select2.min.js"></script>
-	<script src="lib/marknote/marknote.js"></script>
-	<script src="lib/filesaver/blob.js"></script>
-	<script src="lib/filesaver/filesaver.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/jquery.scrollTo.min.js"></script>
 	
-	<script src="js/playfields.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/init.js"></script>
+	<script type="text/javascript" src="lib/knockout/knockout-3.3.0.min.js"></script>
+	<script type="text/javascript" src="lib/knockout/knockout-custom.js"></script>
+	
+	<script type="text/javascript" src="lib/bootstrap/bootstrap-contextmenu.js"></script>
+	<script type="text/javascript" src="lib/select2/select2.min.js"></script>
+	
+	<script type="text/javascript" src="lib/materialize/materialize.min.js"></script>
+	
+	<script type="text/javascript" src="lib/marknote/marknote.js"></script>
+	<script type="text/javascript" src="lib/filesaver/blob.js"></script>
+	<script type="text/javascript" src="lib/filesaver/filesaver.min.js"></script>
+	
+	<script type="text/javascript" src="js/playfields.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/init.js"></script>
 </head>
 <body>
 	<noscript>
 	    <style type="text/css">
 	        #page-container { display: none; }
 	    </style>
-	    	<h1 class="text-center">You don't have javascript enabled!</h1>
-	    	<h3 class="text-center">This site is built entirely in javascript. You must enable it to use this site.</h3>
+	    	<h1 class="center-align">You don't have javascript enabled!</h1>
+	    	<h3 class="center-align">This site is built entirely in javascript. You must enable it to use this site.</h3>
 	</noscript>
 
 	<div id="page-container" class="container">
-		<div class="well" style="padding-bottom: 30px;">
+		<div class="card-panel z-depth-3">
 			<!-- HEADER -->
 			<div class="row">
-				<div id="project_title" class="col-md-4">
-					<h2><span class="label label-primary">Untold Stories Mission Editor<sup>v1.1</sup></span></h2>
+				<div id="project_title" class="col m5">
+					<div class="card-panel teal lighten-1 z-depth-2">
+						<span class="white-text">Untold Stories Mission Editor<sup>v1.2</sup></span>
+					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="checkbox checkbox-primary" style="display: inline-block; margin-right: 37px;">
-					    <label>
-					      <input id="debugMode" type="checkbox" data-bind="checked: debugMode">Debug Mode</input>
-					    </label>
-				  	</div>
-					<label class="control-label" for="debugTier" style="margin-right: 10px;">Debug Tier:</label>
-					<select id="debugTier" class="form-control select" data-bind="
+				<div class="input-field col m7">
+					<label for="missionTitle">Mission Title</label>
+					<input id="missionTitle" type="text" data-bind="textInput: missionTitle"></input>
+					<div class="hint">The title of the mission (mandatory).</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col m2">
+					<div class="switch">
+					 	<label>
+						    <input id="debugMode" type="checkbox" data-bind="checked: debugMode">
+						    <span class="lever"></span>
+						    <span>Debug Mode</span>
+					  	</label>
+					</div>
+				</div>
+				<div id="debugTier" class="col m3">
+					<label>Debug Tier:</label>
+					<select data-bind="
 						options: userTiers,
 						optionsValue: 'index',
 						optionsText: function(item) { return item.index() + '. ' + item.text; },
 						value: debugTier">
+						<option value=""></option>
 					</select>
 				</div>
-				<div class="col-md-4">
-					<label class="control-label" for="missionTitle">Mission Title:</label>
-					<input id="missionTitle" class="form-control" data-bind="textInput: missionTitle"></input>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-8">
+				<div class="col m7">
 					<input id="fileBrowser" type="file" style="display: none;" data-bind="event: { change: readFileContents }" />
-					<button type="button" class="btn btn-primary" style="margin-right: 30px;" data-bind="
+					<button type="button" class="btn waves-effect waves-light" data-bind="
 						click: function() { $('#fileBrowser').click(); }">
 							Import
 					</button>
-					<button type="button" class="btn btn-primary" data-bind="click: exportToFile">Export</button>
+					<button type="button" class="btn waves-effect waves-light" style="margin-left: 10px;" data-bind="click: exportToFile">Export</button>
 				</div>
 			</div>
 			<hr class="soften" />
@@ -83,7 +89,7 @@
 
 			<!-- TIERS -->
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col m9">
 					<ul id="tiersList" class="nav nav-pills">
 						<!-- ko ifnot: userTiers().length -->
 							<li role="presentation" class="active"><a href="#" style="pointer-events: none;">Add tiers...</a></li>
@@ -96,20 +102,18 @@
 					  	<!-- /ko -->
 					</ul>
 				</div>
-				<div class="col-md-4">
-					<div class="btn-group">
-					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    Add Tier <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					  	<!-- ko foreach: tiers -->
-					  		<li><a href="#" data-bind="text: $data, click: $root.addTier"></a></li>
-					  	<!-- /ko -->
-					  </ul>
-					</div>
+				<div class="col m3">
+				  <a class="btn dropdown-button" data-activates="tiers-dropdown" data-beloworigin="true">
+				    <i class="mdi-navigation-arrow-drop-down right"></i>Add Tier
+				  </a>
+				  <ul id="tiers-dropdown" class="dropdown-content">
+				  	<!-- ko foreach: tiers -->
+				  		<li><a href="#" data-bind="text: $data, click: $root.addTier"></a></li>
+				  	<!-- /ko -->
+				  </ul>
 				</div>
 			</div>
-			<hr />
+			<hr class="soften" />
 			<!-- /TIERS -->
 
 			<!-- TIER CONTENT -->
@@ -119,8 +123,8 @@
 							name: selectedTier().text.toLowerCase().replace(' ', '_') + '_template',
 							data: selectedTier().tierData,
 							afterRender: function() {
-								$.material.init();
-								$('.select').dropdown({'dropdownClass': ''});
+								$('input[type=text]').change();
+								$('select').material_select();
 								$('.select2').select2();
 							}
 						}">
@@ -130,19 +134,17 @@
 		</div>
 
 		<!-- FOOTER -->
-			<p class="pull-left text-muted small">Mission Editor by Solon.</p>
-			<p class="pull-right text-muted small">Big thanks to SuperJenius for the Untold Stories mod.</p>
+		<span class="pull-left text-muted small">Mission Editor by Solon.</span>
+		<span class="pull-right text-muted small">Big thanks to Super Jenius for the Untold Stories mod.</span>
 		<!-- /FOOTER -->
 	</div>
 
 	<!-- CONTEXT MENU -->
 	<div id="context-menu">
 		<ul class="dropdown-menu" role="menu">
-			<li id="moveLeft"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-arrow-left"></i> Move left</a></li>
-			<li id="moveRight"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-arrow-right"></i> Move right</a></li>
-			<!-- <li><a href="#" tabindex="-1"><i class="glyphicon glyphicon-plus"></i> Add tier left</a></li> -->
-			<!-- <li><a href="#" tabindex="-1"><i class="glyphicon glyphicon-plus"></i> Add tier right</a></li> -->
-			<li id="deleteTier"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-trash text-danger"></i> Delete</a></li>
+			<li id="moveLeft"><a href="#" tabindex="-1"><i class="mdi-navigation-arrow-back"></i> Move Left</a></li>
+			<li id="moveRight"><a href="#" tabindex="-1"><i class="mdi-navigation-arrow-forward"></i> Move Right</a></li>
+			<li id="deleteTier"><a href="#" tabindex="-1"><i class="mdi-action-delete red-text"></i> Delete</a></li>
 		</ul>
 	</div>
 	<!-- /CONTEXT MENU -->

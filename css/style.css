@@ -1,5 +1,14 @@
-body {
-	padding: 20px;
+
+.pointer {
+	cursor: pointer;
+}
+
+.input-field {
+	margin-top: 22px;
+}
+
+hr {
+	margin-bottom: 20px;
 }
 
 hr.soften {
@@ -11,34 +20,26 @@ hr.soften {
   border: 0;
 }
 
-.debugTierDropdown {
-	display: inline-block;
+label {
+	color: black;
+}
+
+.waves-effect {
+	z-index: auto;
+}
+
+.switch label span {
 	vertical-align: middle;
-	width: 110px;
 }
 
-.pointer {
-  cursor: pointer;
+#project_title span {
+	font-size: 23px;
+	letter-spacing: 3px;
 }
 
-.dropdown-menu i {
-	margin-right: 5px;
-}
-
-#project_title h2 {
-	margin: 0px 0px 25px 0px;
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-	#project_title {
-		width: 100%;
-	}
-}
-
-.dropdownjs::after {
-	content: "\e8a3" !important;
-}
-
-.checkbox .checkbox-material .check {
-	margin-right: 8px;
+#debugTier .select-wrapper {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: -15px;
+	margin-left: 15px;
 }
