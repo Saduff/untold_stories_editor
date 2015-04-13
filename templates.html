@@ -9,12 +9,12 @@
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 30px;">
-			<div class="input-field col m4">
+			<div class="input-field col m6">
 				<label for="targetName">Target Name</label>
 				<input id="targetName" type="text" data-bind="textInput: targetName"/>
 				<div class="hint">The name of the character to be targeted (case sensitive).</div>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 			    <p>
 			      <input id="offensiveTarget" type="checkbox" data-bind="checked: isOffensiveTarget"/>
 			      <label for="offensiveTarget" class="check-red">Offensive Target</label>
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -31,7 +31,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -60,30 +60,30 @@
 				</select>
 			</div>
 			<div class="input-field col m3">
-				<label for="X_Coord">X (map horizontal coordinate)</label>
+				<label for="X_Coord">X Coordinate</label>
 				<input id="X_Coord" type="text" data-bind="textInput: X_Coord"/>
 				<div class="hint">The map horizontal coordinate (number).</div>
 			</div>
 			<div class="input-field col m3">
-				<label for="Z_Coord">Z (map vertical coordinate)</label>
+				<label for="Z_Coord">Z Coordinate</label>
 				<input id="Z_Coord" type="text" data-bind="textInput: Z_Coord"/>
 				<div class="hint">The map vertical coordinate (number).</div>
 			</div>
 			<div class="input-field col m3">
-				<label for="Y_Coord">Y (height coordinate)</label>
+				<label for="Y_Coord">Y Coordinate</label>
 				<input id="Y_Coord" type="text" data-bind="textInput: Y_Coord"/>
 				<div class="hint">The height coordinate (number).</div>
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 50px;">
-			<div class="input-field col m3">
+			<div class="input-field col m6">
 				<label for="distance">Distance</label>
 				<input id="distance" type="text" data-bind="textInput: distance"/>
 				<div class="hint">
 					The distance to indicate the player is within range of the desired X and Z coordinates (number).
 				</div>
 			</div>
-			<div class="input-field col m3">
+			<div class="input-field col m6">
 				<label for="yDistance">yDistance</label>
 				<input id="yDistance" type="text" data-bind="textInput: yDistance"/>
 				<div class="hint">
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m3">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -101,7 +101,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m3">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 50px;">
-			<div class="input-field col m6">
+			<div class="input-field col m10">
 				<label for="targetName">Target Name(s)</label>
 				<input id="targetName" type="text" data-bind="textInput: targetName"/>
 				<div class="hint">
@@ -139,7 +139,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -148,7 +148,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -169,8 +169,8 @@
 				<div class="hint">The tier description will appear in the mission status window.</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="input-field col m6">
+		<div class="row" style="margin-bottom: 30px;">
+			<div class="input-field col m8">
 				<label for="itemName">Item Name(s)</label>
 				<input id="itemName" type="text" data-bind="textInput: itemName"/>
 				<div class="hint">
@@ -179,7 +179,7 @@
 					then the full names of the items should be separated by commas.
 				</div>
 			</div>
-			<div class="col m2">
+			<div class="col m4">
 				<p>
 					<input id="autoUseItem" type="checkbox" data-bind="checked: autoUseItem"/>
 					<label for="autoUseItem">Auto Use Item</label>
@@ -188,7 +188,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -197,7 +197,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -219,7 +219,7 @@
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 30px;">
-			<div class="input-field col m8">
+			<div class="input-field col m12">
 				<label for="itemName">Item Name</label>
 				<input id="itemName" type="text" data-bind="textInput: itemName"/>
 				<div class="hint">
@@ -229,7 +229,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -238,7 +238,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -267,7 +267,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col m6">
+			<div class="input-field col m8">
 				<label for="browserTitle">Browser Title (optional)</label>
 				<input id="browserTitle" type="text" data-bind="textInput: browserTitle"/>
 				<div class="hint">
@@ -275,7 +275,7 @@
 					If omitted, the default &quot;WEB BROWSER&quot; appears.
 				</div>
 			</div>
-			<div class="col m2">
+			<div class="col m4">
 				<p>
 				    <input id="hideAddress" type="checkbox" data-bind="checked: hideAddress"/>
 				    <label for="hideAddress">Hide Address</label>
@@ -284,19 +284,19 @@
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 30px;">
-			<div class="input-field col m4">
+			<div class="input-field col m6">
 				<label for="width">Width (optional)</label>
 				<input id="width" type="text" data-bind="textInput: width"/>
 				<div class="hint">The width of the browser window.</div>
 			</div>
-			<div class="input-field col m4">
+			<div class="input-field col m6">
 				<label for="height">Height (optional)</label>
 				<input id="height" type="text" data-bind="textInput: height"/>
 				<div class="hint">The height of the browser window.</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -305,7 +305,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -327,19 +327,19 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col m4">
+			<div class="input-field col m6">
 				<label for="volume">(Optional) Volume (0-100)</label>
 				<input id="volume" type="text" data-bind="textInput: volume"/>
 				<div class="hint">The volume to play the file (0-100). If omitted, the audio is played at full volume (100).</div>
 			</div>
-			<div class="col m2">
+			<div class="col m3">
 				<p>
 					<input id="preload" type="checkbox" data-bind="checked: preload"/>
 					<label for="preload">Preload (optional)</label>
 			  	</p>
 			  	<p class="hint small">If checked, the file is preloaded instead of being played immediately.</p>
 			</div>
-			<div class="col m2">
+			<div class="col m3">
 				<p>
 					<input id="loop" type="checkbox" data-bind="checked: loop"/>
 					<label for="loop">Loop (optional)</label>
@@ -348,7 +348,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -357,7 +357,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -548,7 +548,7 @@
 						<div class="hint">The line of dialog to appear in the subtitle.</div>
 					</div>
 		        </div>
-		        <div class="row" style="margin-bottom: 30px;">
+		        <div class="row" style="margin-bottom: 50px;">
 		        	<div class="input-field col m4">
 						<label data-bind="attr: { for: 'dialog_line_duration_' + $index() }">Duration (optional)</label>
 						<input type="text" data-bind="textInput: duration, attr: { id: 'dialog_line_duration_' + $index() }"/>
@@ -926,7 +926,7 @@
 						<div class="hint">The line of dialog to appear in the subtitle.</div>
 					</div>
 		        </div>
-		        <div class="row" style="margin-bottom: 30px;">
+		        <div class="row" style="margin-bottom: 50px;">
 		        	<div class="input-field col m4">
 						<label data-bind="attr: { for: 'dialog_line_duration_' + $index() }">Duration (optional)</label>
 						<input type="text" data-bind="textInput: duration, attr: { id: 'dialog_line_duration_' + $index() }"/>
@@ -1135,21 +1135,21 @@
 		    	</div>
 		    	<div class="row" style="margin-bottom: 30px;">
 			    	<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_x_coord_' + $index() }">X (horizontal coordinate)</label>
+						<label data-bind="attr: { for: 'camera_x_coord_' + $index() }">X Coordinate</label>
 						<input type="text" data-bind="textInput: posX, attr: { id: 'camera_x_coord_' + $index() }"/>
 						<div class="hint">
 							The horizontal coordinate where the camera is placed (number).
 						</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_z_coord_' + $index() }">Z (vertical coordinate)</label>
+						<label data-bind="attr: { for: 'camera_z_coord_' + $index() }">Z Coordinate</label>
 						<input type="text" data-bind="textInput: posZ, attr: { id: 'camera_z_coord_' + $index() }"/>
 						<div class="hint">
 							The vertical coordinate where the camera is placed (number).
 						</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_y_coord_' + $index() }">Y (height coordinate)</label>
+						<label data-bind="attr: { for: 'camera_y_coord_' + $index() }">Y Coordinate</label>
 						<input type="text" data-bind="textInput: posY, attr: { id: 'camera_y_coord_' + $index() }"/>
 						<div class="hint">
 							The height coordinate where the camera is placed (number).
@@ -1217,7 +1217,7 @@
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
-		    	<div class="row" style="margin-bottom: 20px;">
+		    	<div class="row" style="margin-bottom: 30px;">
 			    	<div class="input-field col m12">
 						<label data-bind="attr: { for: 'cinematic_npc_' + $index() }">NPC Name</label>
 						<input type="text" data-bind="textInput: name, attr: { id: 'cinematic_npc_' + $index() }"/>
@@ -1246,15 +1246,15 @@
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 20px;">
-			    	<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_face_x_' + $index() }">X (horizontal coordinate)</label>
+			    	<div class="input-field col m6">
+						<label data-bind="attr: { for: 'camera_face_x_' + $index() }">X Coordinate</label>
 						<input type="text" data-bind="textInput: X_Coord, attr: { id: 'camera_face_x_' + $index() }"/>
 						<div class="hint">
 							The horizontal coordinate the player should face (number).
 						</div>
 					</div>
-					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_face_z_' + $index() }">Z (vertical coordinate)</label>
+					<div class="input-field col m6">
+						<label data-bind="attr: { for: 'camera_face_z_' + $index() }">Z Coordinate</label>
 						<input type="text" data-bind="textInput: Z_Coord, attr: { id: 'camera_face_z_' + $index() }"/>
 						<div class="hint">
 							The vertical coordinate the player should face (number).
