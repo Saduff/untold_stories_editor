@@ -258,6 +258,10 @@ nav {
   	bottom: 100%;
 }
 
+.dropup .select-wrapper i::before {
+	content: "\e896";
+}
+
 .panel {
   margin-bottom: 20px;
   background-color: #fff;
