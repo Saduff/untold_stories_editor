@@ -337,7 +337,7 @@ function mainViewModel()
 				break;
 
 			case "cinematic_camera":
-				var text = "Camera Moevement";
+				var text = "Camera Movement";
 				cinematicData.duration = new ko.observable();
 				cinematicData.posX = new ko.observable();
 				cinematicData.posY = new ko.observable();
