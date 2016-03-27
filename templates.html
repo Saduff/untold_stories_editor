@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -31,7 +31,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -40,6 +40,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- /TARGET TIER TEMPLATE -->
 
@@ -75,7 +91,7 @@
 				<div class="hint">The height coordinate (number).</div>
 			</div>
 		</div>
-		<div class="row" style="margin-bottom: 50px;">
+		<div class="row" style="margin-bottom: 30px;">
 			<div class="input-field col m6">
 				<label for="distance">Distance</label>
 				<input id="distance" type="text" data-bind="textInput: distance"/>
@@ -91,8 +107,17 @@
 				</div>
 			</div>
 		</div>
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="input-field col m12">
+        <label for="waypointName">Waypoint Name (optional)</label>
+        <input id="waypointName" type="text" data-bind="textInput: waypointName"/>
+        <div class="hint">
+          When a waypoint name is entered, a waypoint will be displayed when the player is within the designated playfield.
+        </div>
+      </div>
+    </div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -101,7 +126,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -110,6 +135,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- /LOCATION TIER TEMPLATE -->
 
@@ -139,7 +180,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -148,7 +189,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -157,6 +198,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- KILL TIER TEMPLATE -->
 
@@ -188,7 +245,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -197,7 +254,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -206,6 +263,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- /ADD ITEM TEMPLATE -->
 
@@ -229,7 +302,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -238,7 +311,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -247,6 +320,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- /USE ITEM TEMPLATE -->
 
@@ -260,11 +349,49 @@
 			</div>
 		</div>
 		<div class="row" style="margin-bottom: 30px;">
-			<div class="input-field col m12">
+			<div class="input-field col m8">
 				<label for="URL">URL</label>
 				<input id="URL" type="text" data-bind="textInput: URL"/>
 				<div class="hint">The web address of the page to be displayed.</div>
 			</div>
+      <div class="input-field col m4">
+        <ul class="dropdown-content" id="special_expression_dropdown">
+          <li>
+            <a href="#" data-bind="click: function() {
+              URL(URL() + '{{player.m_Name}}');
+              $('input[type=text]').change();
+            }">Player Name</a>
+          </li>
+          <li>
+            <a href="#" data-bind="click: function() {
+              URL(URL() + '{{player.m_Faction}}');
+              $('input[type=text]').change();
+            }">Player Faction</a>
+          </li>
+          <li>
+            <a href="#" data-bind="click: function() {
+              URL(URL() + '{{player.m_Gender}}');
+              $('input[type=text]').change();
+            }">Player Gender</a>
+          </li>
+          <li>
+            <a href="#" data-bind="click: function() {
+              URL(URL() + '{{player.m_CharacterID}}');
+              $('input[type=text]').change();
+            }">Player Character ID</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#" data-bind="click: function() {
+              URL(URL() + '{{version}}');
+              $('input[type=text]').change();
+            }">Untold Stories Version</a>
+          </li>
+        </ul>
+        <span class="pointer dropdown-toggle" data-beloworigin="true" data-activates="special_expression_dropdown" data-bind="dropdown: {}">
+          Add special expression <i class="mdi-navigation-arrow-drop-down"></i>
+        </span>
+      </div>
 		</div>
 		<div class="row">
 			<div class="input-field col m8">
@@ -295,8 +422,18 @@
 				<div class="hint">The height of the browser window.</div>
 			</div>
 		</div>
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="input-field col m12">
+        <label for="response">Response (optional)</label>
+        <input id="response" type="text" data-bind="textInput: response"/>
+        <div class="hint">
+        Use this setting when the player must successfully complete a task or puzzle in the web browser before proceeding to the next tier in the mission.
+        Setting response=”complete” tells the browser to wait for the URL to be changed to data:,complete before the player can proceed to the next tier.
+        </div>
+      </div>
+    </div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -305,7 +442,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -314,6 +451,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- /BROWSER TEMPLATE -->
 
@@ -333,22 +486,23 @@
 				<div class="hint">The volume to play the file (0-100). If omitted, the audio is played at full volume (100).</div>
 			</div>
 			<div class="col m3">
-				<p>
-					<input id="preload" type="checkbox" data-bind="checked: preload"/>
-					<label for="preload">Preload (optional)</label>
-			  	</p>
-			  	<p class="hint small">If checked, the file is preloaded instead of being played immediately.</p>
+        <label for="preload">Preload:</label>
+        <select id="preload" data-bind="value: preload">
+          <option value="">Play</option>
+          <option value="true">True</option>
+          <option value="wait">Wait</option>
+        </select>
 			</div>
 			<div class="col m3">
 				<p>
 					<input id="loop" type="checkbox" data-bind="checked: loop"/>
-					<label for="loop">Loop (optional)</label>
+					<label for="loop">Loop</label>
 			  	</p>
 			  	<p class="hint small">If checked, the audio will loop continuously.</p>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -357,7 +511,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m6 dropup">
+			<div class="col m6">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -366,6 +520,22 @@
 				</select>
 			</div>
 		</div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 	</script>
 	<!-- /AUDIO TEMPLATE -->
 
@@ -379,7 +549,7 @@
 
 	<!-- DIALOG TEMPLATE -->
 	<script type="text/html" id="dialog_template">
-		<div class="row" style="margin-bottom: 30px;">
+		<div class="row" style="margin-bottom: 50px;">
 			<div class="input-field col m8">
 				<label for="tierDescription">Description</label>
 				<input id="tierDescription" type="text" data-bind="textInput: description"/>
@@ -395,7 +565,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4 dropup">
+			<div class="col m4">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -404,7 +574,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4 dropup">
+			<div class="col m4">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -412,7 +582,30 @@
 					<option value="female">Female</option>
 				</select>
 			</div>
+      <div class="col m4">
+        <p>
+          <input id="tierContAudio" type="checkbox" data-bind="checked: contAudio"/>
+          <label for="tierContAudio">Continued Audio</label>
+        </p>
+        <p class="hint small">If checked, allows audio to continue playing after the tier is complete.</p>
+      </div>
 		</div>
+    <div class="row">
+      <div class="col m4">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m4">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 		<hr class="soften" />
 
 		<div class="row" style="margin-bottom: 30px;">
@@ -453,10 +646,10 @@
 					var $element = $(element);
 					if ( $element.is('div') ) {
 						$('select').material_select();
-						$('select2').select2();
+						$('.select2').select2({placeholder: '', allowClear: true});
 						if (!suppressAnimations) {
 							$element.hide().slideDown();
-							$.customScrollTo($element, 500);
+							$.customScrollTo($element, 0);
 						}
 					}
 				}
@@ -536,7 +729,8 @@
 		        		Add special expression <i class="mdi-navigation-arrow-drop-down"></i>
 		        	</span>
 		        	<span class="right pointer" data-bind="click: function() { $parents[1].dialogData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
+		        		<i class="material-icons red-text">clear</i>
+                <span style="font-size: 16px; vertical-align: super;">Delete</span>
 		        	</span>
 		        </div>
 		    </div>
@@ -587,34 +781,18 @@
 		        <div class="panel-title">
 		        	<span>Fade Out</span>
 		        	<span class="right pointer" data-bind="click: function() { $parents[1].dialogData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
+		        		<i class="material-icons red-text">clear</i>
+                <span style="font-size: 16px; vertical-align: super;">Delete</span>
 		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 30px;">
-		    		<div class="input-field col m4">
-						<label data-bind="attr: { for: 'fadeout_duration_' + $index() }">Duration</label>
-						<input type="text" data-bind="textInput: duration, attr: { id: 'fadeout_duration_' + $index() }"/>
-						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
-					</div>
-					<div class="col m4">
-						<label>Faction:</label>
-						<select data-bind="value: faction">
-							<option value="">Any Faction</option>
-							<option value="Templar">Templar</option>
-							<option value="Illuminati">Illuminati</option>
-							<option value="Dragon">Dragon</option>
-						</select>
-					</div>
-					<div class="col m4">
-						<label>Gender:</label>
-						<select data-bind="value: gender">
-							<option value="">Any Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-						</select>
-					</div>
+		    		<div class="input-field col m12">
+  						<label data-bind="attr: { for: 'fadeout_duration_' + $index() }">Duration</label>
+  						<input type="text" data-bind="textInput: duration, attr: { id: 'fadeout_duration_' + $index() }"/>
+  						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
+            </div>
 		    	</div>
 		    </div>
     		</div>
@@ -628,34 +806,18 @@
 		        <div class="panel-title">
 		        	<span>Fade In</span>
 		        	<span class="right pointer" data-bind="click: function() { $parents[1].dialogData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
+		        		<i class="material-icons red-text">clear</i>
+                <span style="font-size: 16px; vertical-align: super;">Delete</span>
 		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 30px;">
-		    		<div class="input-field col m4">
-						<label data-bind="attr: { for: 'fadein_duration_' + $index() }">Duration</label>
-						<input type="text" data-bind="textInput: duration, attr: { id: 'fadein_duration_' + $index() }"/>
-						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
-					</div>
-					<div class="col m4">
-						<label>Faction:</label>
-						<select data-bind="value: faction">
-							<option value="">Any Faction</option>
-							<option value="Templar">Templar</option>
-							<option value="Illuminati">Illuminati</option>
-							<option value="Dragon">Dragon</option>
-						</select>
-					</div>
-					<div class="col m4">
-						<label>Gender:</label>
-						<select data-bind="value: gender">
-							<option value="">Any Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-						</select>
-					</div>
+		    		<div class="input-field col m12">
+  						<label data-bind="attr: { for: 'fadein_duration_' + $index() }">Duration</label>
+  						<input type="text" data-bind="textInput: duration, attr: { id: 'fadein_duration_' + $index() }"/>
+  						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
+            </div>
 		    	</div>
 		    </div>
 		    </div>
@@ -669,7 +831,8 @@
 		        <div class="panel-title">
 		        	<span>Audio</span>
 		        	<span class="right pointer" data-bind="click: function() { $parents[1].dialogData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
+		        		<i class="material-icons red-text">clear</i>
+                <span style="font-size: 16px; vertical-align: super;">Delete</span>
 		        	</span>
 		        </div>
 		    </div>
@@ -729,7 +892,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col m4 dropup">
+			<div class="col m4">
 				<label for="tierFaction">Tier Faction:</label>
 				<select id="tierFaction" data-bind="value: faction">
 					<option value="">Any Faction</option>
@@ -738,7 +901,7 @@
 					<option value="Dragon">Dragon</option>
 				</select>
 			</div>
-			<div class="col m4 dropup">
+			<div class="col m4">
 				<label for="tierGender">Tier Gender:</label>
 				<select id="tierGender" data-bind="value: gender">
 					<option value="">Any Gender</option>
@@ -746,132 +909,123 @@
 					<option value="female">Female</option>
 				</select>
 			</div>
+      <div class="col m4">
+        <p>
+          <input id="tierContAudio" type="checkbox" data-bind="checked: contAudio"/>
+          <label for="tierContAudio">Continued Audio</label>
+        </p>
+        <p class="hint small">If checked, allows audio to continue playing after the tier is complete.</p>
+      </div>
 		</div>
+    <div class="row">
+      <div class="col m4">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m4">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
 		<hr class="soften"/>
 
-		<div class="row" style="margin-bottom: 30px;">
-			<div class="col m12">
-				<ul id="cinematic_data_dropdown" class="dropdown-content">
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_camera');
-				  		}">Camera Movement</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_facetarget');
-				  		}">Face Target</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_facenpc');
-				  		}">Face NPC</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_facecoords');
-				  		}">Face Coordinates</a>
-				  	</li>
-				  	<li class="divider"></li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_dialog_line');
-				  		}">Dialog Line</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_fadeout');
-				  		}">Fade Out</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_fadein');
-				  		}">Fade In</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_audio');
-				  		}">Audio</a>
-				  	</li>
-				</ul>
-				<a class="btn dropdown-button" style="min-width: 180px;" data-activates="cinematic_data_dropdown"
-					data-beloworigin="true" data-bind="dropdown: {}">
-					<i class="mdi-navigation-arrow-drop-down right"></i>Add
-				</a>
-			</div>
-		</div>
+    <div class="row">
+      <div class="col m10">
+        <!-- ko ifnot: cinematicData().length -->
+          <p class="teal-text lighten-1">Add something...</p>
+        <!-- /ko -->
+        <ul id="cinematicData" class="nav nav-pills">
+          <!-- ko foreach: cinematicData -->
+              <li role="presentation" class="context-menu"
+                data-bind="event: { contextmenu: $root.contextMenuShown },
+                           click: function(data, event) { $root.changeTier(data, event, $parent); }">
+                  <a href="#" data-bind="text: index() + '. ' + text"></a>
+              </li>
+            <!-- /ko -->
+        </ul>
+      </div>
+      <div class="col m2">
+        <ul id="cinematic_data_dropdown" class="dropdown-content">
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_camera');
+              }">Camera Movement</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_facetarget');
+              }">Face Target</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_facenpc');
+              }">Face NPC</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_facecoords');
+              }">Face Coordinates</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_dialog_line');
+              }">Dialog Line</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_fadeout');
+              }">Fade Out</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_fadein');
+              }">Fade In</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_audio');
+              }">Audio</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_looks');
+              }">Looks</a>
+            </li>
+            <li>
+              <a href="#" data-bind="click: function(data, event) {
+                $root.addCinematicData(data, event, 'cinematic_animation');
+              }">Animation</a>
+            </li>
+        </ul>
+        <a class="btn dropdown-button" style="min-width: 180px;" data-activates="cinematic_data_dropdown"
+          data-beloworigin="true" data-bind="dropdown: {}">
+          <i class="mdi-navigation-arrow-drop-down right"></i>Add
+        </a>
+      </div>
+    </div>
+    <hr class="soften" />
 
-		<div class="row" data-bind="foreach: {
-				data: cinematicData,
-				beforeRemove: function(element) { $(element).slideUp(); },
-				afterAdd: function(element) {
-					var $element = $(element);
-					if ( $element.is('div') ) {
-						$('select').material_select();
-						$('select2').select2();
-						if (!suppressAnimations) {
-							$element.hide().slideDown();
-							$.customScrollTo($element, 500);
-						}
-					}
-				}
-			}">
-				<!-- ko template: { name: type + '_template', data: data } --><!-- /ko -->
-		</div>
-
-		<!-- ko if: cinematicData().length > 0 -->
-		<div class="row" style="margin-bottom: 30px;">
-			<div class="col m12 dropup">
-				<ul id="cinematic_data_dropdown2" class="dropdown-content">
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_camera');
-				  		}">Camera Movement</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_facetarget');
-				  		}">Face Target</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_facenpc');
-				  		}">Face NPC</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_facecoords');
-				  		}">Face Coordinates</a>
-				  	</li>
-				  	<li class="divider"></li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_dialog_line');
-				  		}">Dialog Line</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_fadeout');
-				  		}">Fade Out</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_fadein');
-				  		}">Fade In</a>
-				  	</li>
-				  	<li>
-				  		<a href="#" data-bind="click: function(data, event) {
-				  			$root.addCinematicData(data, event, 'cinematic_audio');
-				  		}">Audio</a>
-				  	</li>
-				</ul>
-				<a class="btn dropdown-button" style="min-width: 180px;" data-activates="cinematic_data_dropdown2"
-					data-beloworigin="true" data-bind="dropdown: {}">
-					<i class="mdi-navigation-arrow-drop-up right"></i>Add
-				</a>
-			</div>
-		</div>
-		<!-- /ko -->
+		<!-- ko if: selectedTier -->
+      <div data-bind="template:
+        {
+          name: selectedTier().type + '_template',
+          data: selectedTier().data,
+          afterRender: function() {
+            $('input[type=text]').change();
+            $('select').material_select();
+            $('.select2').select2({placeholder: '', allowClear: true});
+          }
+        }">
+      </div>
+    <!-- /ko -->
 	</script>
 
 	<script type="text/html" id="cinematic_dialog_line_template">
@@ -881,7 +1035,7 @@
 		        <div class="panel-title">
 		        	<span style="margin-right: 50px;">Dialog Line</span>
 		        	<div class="dropdown" style="display: inline-block;">
-			        	<ul class="dropdown-content" data-bind="attr: { id: 'special_expression_dropdown_' + $index() }">
+			        	<ul id="special_expression_dropdown" class="dropdown-content">
 			        		<li>
 			        			<a href="#" data-bind="click: function() {
 			        				line(line() + '{{m_Player.m_Name}}');
@@ -909,27 +1063,23 @@
 			        		</li>
 			        	</ul>
 			        </div>
-			        <span class="pointer dropdown-toggle" data-beloworigin="true"
-		        		data-bind="attr: { 'data-activates': 'special_expression_dropdown_' + $index() }, dropdown: {}">
+			        <span class="pointer dropdown-toggle" data-beloworigin="true" data-activates="special_expression_dropdown" data-bind="dropdown: {}">
 		        		Add special expression <i class="mdi-navigation-arrow-drop-down"></i>
-		        	</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
 		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		        <div class="row" style="margin-bottom: 30px;">
 		        	<div class="input-field col m12">
-						<label data-bind="attr: { for: 'dialog_line_' + $index() }">Dialog Line</label>
-						<input type="text" data-bind="textInput: line, attr: { id: 'dialog_line_' + $index() }"/>
+						<label for="dialog_line">Dialog Line</label>
+						<input id="dialog_line" type="text" data-bind="textInput: line"/>
 						<div class="hint">The line of dialog to appear in the subtitle.</div>
 					</div>
 		        </div>
 		        <div class="row" style="margin-bottom: 50px;">
 		        	<div class="input-field col m4">
-						<label data-bind="attr: { for: 'dialog_line_duration_' + $index() }">Duration (optional)</label>
-						<input type="text" data-bind="textInput: duration, attr: { id: 'dialog_line_duration_' + $index() }"/>
+						<label for="dialog_line_duration">Duration (optional)</label>
+						<input id="dialog_line_duration" type="text" data-bind="textInput: duration"/>
 						<div class="hint">
 							If you want to override the calculated duration for a specific line,
 							you can set it with this attribute. The duration is specified in seconds.
@@ -964,35 +1114,15 @@
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Fade Out</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 30px;">
-		    		<div class="input-field col m4">
-						<label data-bind="attr: { for: 'fadeout_duration_' + $index() }">Duration</label>
-						<input type="text" data-bind="textInput: duration, attr: { id: 'fadeout_duration_' + $index() }"/>
-						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
-					</div>
-					<div class="col m4">
-						<label>Faction:</label>
-						<select data-bind="value: faction">
-							<option value="">Any Faction</option>
-							<option value="Templar">Templar</option>
-							<option value="Illuminati">Illuminati</option>
-							<option value="Dragon">Dragon</option>
-						</select>
-					</div>
-					<div class="col m4">
-						<label>Gender:</label>
-						<select data-bind="value: gender">
-							<option value="">Any Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-						</select>
-					</div>
+		    		<div class="input-field col m12">
+  						<label for="fadeout_duration">Duration</label>
+  						<input id="fadeout_duration" type="text" data-bind="textInput: duration"/>
+  						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
+            </div>
 		    	</div>
 		    </div>
 		    </div>
@@ -1005,35 +1135,15 @@
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Fade In</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 30px;">
-		    		<div class="input-field col m4">
-						<label data-bind="attr: { for: 'fadein_duration_' + $index() }">Duration</label>
-						<input type="text" data-bind="textInput: duration, attr: { id: 'fadein_duration_' + $index() }"/>
-						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
-					</div>
-					<div class="col m4">
-						<label>Faction:</label>
-						<select data-bind="value: faction">
-							<option value="">Any Faction</option>
-							<option value="Templar">Templar</option>
-							<option value="Illuminati">Illuminati</option>
-							<option value="Dragon">Dragon</option>
-						</select>
-					</div>
-					<div class="col m4">
-						<label>Gender:</label>
-						<select data-bind="value: gender">
-							<option value="">Any Gender</option>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-						</select>
-					</div>
+		    		<div class="input-field col m12">
+  						<label for="fadein_duration">Duration</label>
+  						<input id="fadein_duration" type="text" data-bind="textInput: duration"/>
+  						<div class="hint">Indicates how long the fade should take. The duration is specified in seconds.</div>
+            </div>
 		    	</div>
 		    </div>
 		    </div>
@@ -1046,21 +1156,18 @@
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Audio</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 30px;">
 		    		<div class="input-field col m8">
-						<label data-bind="attr: { for: 'audio_url_' + $index() }">URL</label>
-						<input type="text" data-bind="textInput: URL, attr: { id: 'audio_url_' + $index() }"/>
+						<label for="audio_url">URL</label>
+						<input id="audio_url" type="text" data-bind="textInput: URL"/>
 						<div class="hint">Audio files are downloaded from the web. This is the URL to the file.</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'audio_volume_' + $index() }">(Optional) Volume (0-100)</label>
-						<input type="text" data-bind="textInput: volume, attr: { id: 'audio_volume_' + $index() }"/>
+						<label for="audio_volume">(Optional) Volume (0-100)</label>
+						<input id="audio_volume" type="text" data-bind="textInput: volume"/>
 						<div class="hint">
 							The volume to play the file (0-100). If omitted, the audio is played at full volume (100).
 						</div>
@@ -1096,16 +1203,13 @@
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Camera Movement</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 50px;">
 		    		<div class="input-field col m6">
-						<label data-bind="attr: { for: 'camera_duration_' + $index() }">Duration</label>
-						<input type="text" data-bind="textInput: duration, attr: { id: 'camera_duration_' + $index() }"/>
+						<label for="camera_duration">Duration</label>
+						<input id="camera_duration" type="text" data-bind="textInput: duration"/>
 						<div class="hint">
 							This is the amount of time (in milliseconds) designated for the camera to move from its
 							current position to the specified position.
@@ -1135,22 +1239,22 @@
 		    	</div>
 		    	<div class="row" style="margin-bottom: 30px;">
 			    	<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_x_coord_' + $index() }">X Coordinate</label>
-						<input type="text" data-bind="textInput: posX, attr: { id: 'camera_x_coord_' + $index() }"/>
+						<label for="camera_x_coord">X Coordinate</label>
+						<input id="camera_x_coord" type="text" data-bind="textInput: posX"/>
 						<div class="hint">
 							The horizontal coordinate where the camera is placed (number).
 						</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_z_coord_' + $index() }">Z Coordinate</label>
-						<input type="text" data-bind="textInput: posZ, attr: { id: 'camera_z_coord_' + $index() }"/>
+						<label for="camera_z_coord">Z Coordinate</label>
+						<input id="camera_z_coord" type="text" data-bind="textInput: posZ"/>
 						<div class="hint">
 							The vertical coordinate where the camera is placed (number).
 						</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_y_coord_' + $index() }">Y Coordinate</label>
-						<input type="text" data-bind="textInput: posY, attr: { id: 'camera_y_coord_' + $index() }"/>
+						<label for="camera_y_coord">Y Coordinate</label>
+						<input id="camera_y_coord" type="text" data-bind="textInput: posY"/>
 						<div class="hint">
 							The height coordinate where the camera is placed (number).
 						</div>
@@ -1158,23 +1262,23 @@
 		    	</div>
 		    	<div class="row" style="margin-bottom: 50px;">
 			    	<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_target_x_' + $index() }">Target X</label>
-						<input type="text" data-bind="textInput: targetX, attr: { id: 'camera_target_x_' + $index() }"/>
+						<label for="camera_target_x">Target X</label>
+						<input id="camera_target_x" type="text" data-bind="textInput: targetX"/>
 						<div class="hint">
 							The horizontal coordinate the camera will focus on (number).
 							Set this to -99 to focus on the player (targetY and targetZ will be ignored).
 						</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_target_z_' + $index() }">Target Z</label>
-						<input type="text" data-bind="textInput: targetZ, attr: { id: 'camera_target_z_' + $index() }"/>
+						<label for="camera_target_z">Target Z</label>
+						<input id="camera_target_z" type="text" data-bind="textInput: targetZ"/>
 						<div class="hint">
 							The vertical coordinate the camera will focus on (number).
 						</div>
 					</div>
 					<div class="input-field col m4">
-						<label data-bind="attr: { for: 'camera_target_y_' + $index() }">Target Y</label>
-						<input type="text" data-bind="textInput: targetY, attr: { id: 'camera_target_y_' + $index() }"/>
+						<label for="camera_target_y">Target Y</label>
+						<input id="camera_target_y" type="text" data-bind="textInput: targetY"/>
 						<div class="hint">
 							The height coordinate the camera will focus on (number).
 						</div>
@@ -1191,9 +1295,6 @@
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Face Target</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
@@ -1206,30 +1307,27 @@
 	</script>
 
 	<script type="text/html" id="cinematic_facenpc_template">
-    	<div class="col m12">
+    <div class="col m12">
 			<div class="panel panel-primary">
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Face NPC</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 30px;">
 			    	<div class="input-field col m12">
-						<label data-bind="attr: { for: 'cinematic_npc_' + $index() }">NPC Name</label>
-						<input type="text" data-bind="textInput: name, attr: { id: 'cinematic_npc_' + $index() }"/>
-						<div class="hint">
-							Set the player rotation to face the named NPC. This is useful for having the player
-							face named NPCs that are not targetable, or that otherwise would not be the currently
-							selected target.
-						</div>
-					</div>
-				</div>
+  						<label for="cinematic_npc">NPC Name</label>
+  						<input id="cinematic_npc" type="text" data-bind="textInput: name"/>
+  						<div class="hint">
+  							Set the player rotation to face the named NPC. This is useful for having the player
+  							face named NPCs that are not targetable, or that otherwise would not be the currently
+  							selected target.
+  						</div>
+            </div>
+				  </div>
 		    </div>
-		    </div>
+		  </div>
 		</div>
 	</script>
 
@@ -1239,23 +1337,20 @@
 		    <div class="panel-heading">
 		        <div class="panel-title">
 		        	<span>Face Coordinates</span>
-		        	<span class="right pointer" data-bind="click: function() { $parents[1].cinematicData.remove($parent); }">
-		        		<i class="mdi-action-delete red-text"></i> Delete
-		        	</span>
 		        </div>
 		    </div>
 		    <div class="panel-body" style="margin-top: 10px;">
 		    	<div class="row" style="margin-bottom: 20px;">
 			    	<div class="input-field col m6">
-						<label data-bind="attr: { for: 'camera_face_x_' + $index() }">X Coordinate</label>
-						<input type="text" data-bind="textInput: X_Coord, attr: { id: 'camera_face_x_' + $index() }"/>
+						<label for="camera_face_x">X Coordinate</label>
+						<input id="camera_face_x" type="text" data-bind="textInput: X_Coord"/>
 						<div class="hint">
 							The horizontal coordinate the player should face (number).
 						</div>
 					</div>
 					<div class="input-field col m6">
-						<label data-bind="attr: { for: 'camera_face_z_' + $index() }">Z Coordinate</label>
-						<input type="text" data-bind="textInput: Z_Coord, attr: { id: 'camera_face_z_' + $index() }"/>
+						<label for="camera_face_z">Z Coordinate</label>
+						<input id="camera_face_z" type="text" data-bind="textInput: Z_Coord"/>
 						<div class="hint">
 							The vertical coordinate the player should face (number).
 						</div>
@@ -1265,5 +1360,638 @@
 		    </div>
 		</div>
 	</script>
+
+  <script type="text/html" id="cinematic_looks_template">
+    <div class="col m12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+              <span>Looks</span>
+            </div>
+        </div>
+        <div class="panel-body" style="margin-top: 10px;">
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="input-field col m12">
+              <label for="cinematic_looks_description">Description (optional)</label>
+              <input id="cinematic_looks_description" type="text" data-bind="textInput: description"/>
+              <div class="hint">This is informational only and is chosen by the mission author.</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 50px;">
+            <div class="input-field col m4">
+              <label for="looks_target">Looks Target</label>
+              <input id="looks_target" type="text" data-bind="textInput: looksTarget"/>
+              <div class="hint">Which characters are selected to apply the new looks.</div>
+            </div>
+            <div class="input-field col m4">
+              <label for="looks_targetqty">Target Quantity (optional)</label>
+              <input id="looks_targetqty" type="text" data-bind="textInput: targetQty"/>
+              <div class="hint">The number of matching targets to select.</div>
+            </div>
+            <div class="input-field col m4">
+              <label for="looks_delay">Delay (optional)</label>
+              <input id="looks_delay" type="text" data-bind="textInput: delay"/>
+              <div class="hint">When included, the new looks will be applied after the specified number of milliseconds have elapsed.</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col m4">
+              <p>
+                  <input id="keep_looks" type="checkbox" data-bind="checked: keepLooks"/>
+                  <label for="keep_looks">Keep Looks</label>
+                </p>
+                <p class="hint small">If checked, the existing looks will be kept and the new looks will be added.</p>
+            </div>
+            <div class="col m4">
+              <p>
+                  <input id="reset_looks" type="checkbox" data-bind="checked: resetLooks"/>
+                  <label for="reset_looks">Reset Looks</label>
+                </p>
+                <p class="hint small">If checked, the player’s character will be set back to their default looks. This applies only to the player, not NPCs.</p>
+            </div>
+            <div class="col m4">
+              <p>
+                  <input id="looks_invisible" type="checkbox" data-bind="checked: invisible"/>
+                  <label for="looks_invisible">Invisible</label>
+                </p>
+                <p class="hint small">If checked, the base model is made invisible and only the new looks are visible.</p>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col m3">
+              <label for="looks_playfield" style="display: inline-block; margin-bottom: 10px;">Playfield (optional):</label>
+              <select id="looks_playfield" class="form-control select2 browser-default"
+                data-bind="options: playFields, optionsValue: 'id', optionsText: 'text', value: playField">
+              </select>
+            </div>
+            <div class="input-field col m3">
+              <label for="looks_x_coord">X Coordinate (optional)</label>
+              <input id="looks_x_coord" type="text" data-bind="textInput: X_Coord"/>
+              <div class="hint">The map horizontal coordinate (number).</div>
+            </div>
+            <div class="input-field col m3">
+              <label for="looks_z_coord">Z Coordinate (optional)</label>
+              <input id="looks_z_coord" type="text" data-bind="textInput: Z_Coord"/>
+              <div class="hint">The map vertical coordinate (number).</div>
+            </div>
+            <div class="input-field col m3">
+              <label for="looks_y_coord">Y Coordinate (optional)</label>
+              <input id="looks_y_coord" type="text" data-bind="textInput: Y_Coord"/>
+              <div class="hint">The height coordinate (number).</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 50px;">
+            <div class="input-field col m6">
+              <label for="looks_distance">Distance (optional)</label>
+              <input id="looks_distance" type="text" data-bind="textInput: distance"/>
+              <div class="hint">
+                The distance to indicate the player is within range of the desired X and Z coordinates (number).
+              </div>
+            </div>
+            <div class="input-field col m6">
+              <label for="looks_ydistance">yDistance (optional)</label>
+              <input id="looks_ydistance" type="text" data-bind="textInput: yDistance"/>
+              <div class="hint">
+                The distance to indicate the player is within range of the desired Y coordinate (number).
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col m6">
+              <label>Faction:</label>
+              <select data-bind="value: faction">
+                <option value="">Any Faction</option>
+                <option value="Templar">Templar</option>
+                <option value="Illuminati">Illuminati</option>
+                <option value="Dragon">Dragon</option>
+              </select>
+            </div>
+            <div class="col m6">
+              <label>Gender:</label>
+              <select data-bind="value: gender">
+                <option value="">Any Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
+          <hr class="soften" />
+
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col m12">
+              <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addLooksData">Add Looks</button>
+            </div>
+          </div>
+
+          <div class="row" data-bind="foreach: {
+              data: looksData,
+              beforeRemove: function(element) { $(element).slideUp(); },
+              afterAdd: function(element) {
+                var $element = $(element);
+                if ( $element.is('div') ) {
+                  $('select').material_select();
+                  $('.select2').select2({placeholder: '', allowClear: true});
+                  if (!suppressAnimations) {
+                    $element.hide().slideDown();
+                    $.customScrollTo($element, 0);
+                  }
+                }
+              }
+            }">
+              <!-- ko template: 'looks_data_template' --><!-- /ko -->
+          </div>
+
+          <!-- ko if: looksData().length > 0 -->
+          <div class="row">
+            <div class="col m12">
+              <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addLooksData">Add Looks</button>
+            </div>
+          </div>
+          <!-- /ko -->
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/html" id="cinematic_animation_template">
+    <div class="col m12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+              <span>Animation</span>
+            </div>
+        </div>
+        <div class="panel-body" style="margin-top: 10px;">
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="input-field col m12">
+              <label for="cinematic_anim_description">Description (optional)</label>
+              <input id="cinematic_anim_description" type="text" data-bind="textInput: description"/>
+              <div class="hint">This is informational only and is chosen by the mission author.</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="input-field col m6">
+              <label for="cinematic_anim_target">Animation Target</label>
+              <input id="cinematic_anim_target" type="text" data-bind="textInput: animTarget"/>
+              <div class="hint">Which characters are selected to apply the animations.</div>
+            </div>
+            <div class="input-field col m6">
+              <label for="cinematic_anim_targetqty">Target Quantity (optional)</label>
+              <input id="cinematic_anim_targetqty" type="text" data-bind="textInput: targetQty"/>
+              <div class="hint">The number of matching targets to select.</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col m3">
+              <label for="anim_playfield" style="display: inline-block; margin-bottom: 10px;">Playfield (optional):</label>
+              <select id="anim_playfield" class="form-control select2 browser-default"
+                data-bind="options: playFields, optionsValue: 'id', optionsText: 'text', value: playField">
+              </select>
+            </div>
+            <div class="input-field col m3">
+              <label for="anim_x_coord">X Coordinate (optional)</label>
+              <input id="anim_x_coord" type="text" data-bind="textInput: X_Coord"/>
+              <div class="hint">The map horizontal coordinate (number).</div>
+            </div>
+            <div class="input-field col m3">
+              <label for="anim_z_coord">Z Coordinate (optional)</label>
+              <input id="anim_z_coord" type="text" data-bind="textInput: Z_Coord"/>
+              <div class="hint">The map vertical coordinate (number).</div>
+            </div>
+            <div class="input-field col m3">
+              <label for="anim_y_coord">Y Coordinate (optional)</label>
+              <input id="anim_y_coord" type="text" data-bind="textInput: Y_Coord"/>
+              <div class="hint">The height coordinate (number).</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 50px;">
+            <div class="input-field col m6">
+              <label for="anim_distance">Distance (optional)</label>
+              <input id="anim_distance" type="text" data-bind="textInput: distance"/>
+              <div class="hint">
+                The distance to indicate the player is within range of the desired X and Z coordinates (number).
+              </div>
+            </div>
+            <div class="input-field col m6">
+              <label for="anim_ydistance">yDistance (optional)</label>
+              <input id="anim_ydistance" type="text" data-bind="textInput: yDistance"/>
+              <div class="hint">
+                The distance to indicate the player is within range of the desired Y coordinate (number).
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col m6">
+              <label>Faction:</label>
+              <select data-bind="value: faction">
+                <option value="">Any Faction</option>
+                <option value="Templar">Templar</option>
+                <option value="Illuminati">Illuminati</option>
+                <option value="Dragon">Dragon</option>
+              </select>
+            </div>
+            <div class="col m6">
+              <label>Gender:</label>
+              <select data-bind="value: gender">
+                <option value="">Any Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
+          <hr class="soften" />
+
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col m12">
+              <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addAnimData">Add Animation</button>
+            </div>
+          </div>
+
+          <div class="row" data-bind="foreach: {
+              data: animData,
+              beforeRemove: function(element) { $(element).slideUp(); },
+              afterAdd: function(element) {
+                var $element = $(element);
+                if ( $element.is('div') ) {
+                  $('select').material_select();
+                  $('.select2').select2({placeholder: '', allowClear: true});
+                  if (!suppressAnimations) {
+                    $element.hide().slideDown();
+                    $.customScrollTo($element, 0);
+                  }
+                }
+              }
+            }">
+              <!-- ko template: 'anim_data_template' --><!-- /ko -->
+          </div>
+
+          <!-- ko if: animData().length > 0 -->
+          <div class="row">
+            <div class="col m12">
+              <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addAnimData">Add Animation</button>
+            </div>
+          </div>
+          <!-- /ko -->
+        </div>
+      </div>
+    </div>
+  </script>
 	<!-- /CINEMATIC TEMPLATE -->
+
+  <!-- LOOKS TEMPLATE -->
+  <script type="text/html" id="looks_template">
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="input-field col m12">
+        <label for="tierDescription">Description</label>
+        <input id="tierDescription" type="text" data-bind="textInput: description"/>
+        <div class="hint">The tier description will appear in the mission status window.</div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="input-field col m4">
+        <label for="looksTarget">Looks Target</label>
+        <input id="looksTarget" type="text" data-bind="textInput: looksTarget"/>
+        <div class="hint">Which characters are selected to apply the new looks.</div>
+      </div>
+      <div class="input-field col m4">
+        <label for="targetQty">Target Quantity (optional)</label>
+        <input id="targetQty" type="text" data-bind="textInput: targetQty"/>
+        <div class="hint">The number of matching targets to select.</div>
+      </div>
+      <div class="input-field col m4">
+        <label for="delay">Delay (optional)</label>
+        <input id="delay" type="text" data-bind="textInput: delay"/>
+        <div class="hint">When included, the new looks will be applied after the specified number of milliseconds have elapsed.</div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col m4">
+        <p>
+            <input id="keepLooks" type="checkbox" data-bind="checked: keepLooks"/>
+            <label for="keepLooks">Keep Looks</label>
+          </p>
+          <p class="hint small">If checked, the existing looks will be kept and the new looks will be added.</p>
+      </div>
+      <div class="col m4">
+        <p>
+            <input id="resetLooks" type="checkbox" data-bind="checked: resetLooks"/>
+            <label for="resetLooks">Reset Looks</label>
+          </p>
+          <p class="hint small">If checked, the player’s character will be set back to their default looks. This applies only to the player, not NPCs.</p>
+      </div>
+      <div class="col m4">
+        <p>
+            <input id="invisible" type="checkbox" data-bind="checked: invisible"/>
+            <label for="invisible">Invisible</label>
+          </p>
+          <p class="hint small">If checked, the base model is made invisible and only the new looks are visible.</p>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col m3">
+        <label for="tierPlayField" style="display: inline-block; margin-bottom: 10px;">Playfield (optional):</label>
+        <select id="tierPlayField" class="form-control select2 browser-default"
+          data-bind="options: playFields, optionsValue: 'id', optionsText: 'text', value: playField">
+        </select>
+      </div>
+      <div class="input-field col m3">
+        <label for="X_Coord">X Coordinate (optional)</label>
+        <input id="X_Coord" type="text" data-bind="textInput: X_Coord"/>
+        <div class="hint">The map horizontal coordinate (number).</div>
+      </div>
+      <div class="input-field col m3">
+        <label for="Z_Coord">Z Coordinate (optional)</label>
+        <input id="Z_Coord" type="text" data-bind="textInput: Z_Coord"/>
+        <div class="hint">The map vertical coordinate (number).</div>
+      </div>
+      <div class="input-field col m3">
+        <label for="Y_Coord">Y Coordinate (optional)</label>
+        <input id="Y_Coord" type="text" data-bind="textInput: Y_Coord"/>
+        <div class="hint">The height coordinate (number).</div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="input-field col m6">
+        <label for="distance">Distance (optional)</label>
+        <input id="distance" type="text" data-bind="textInput: distance"/>
+        <div class="hint">
+          The distance to indicate the player is within range of the desired X and Z coordinates (number).
+        </div>
+      </div>
+      <div class="input-field col m6">
+        <label for="yDistance">yDistance (optional)</label>
+        <input id="yDistance" type="text" data-bind="textInput: yDistance"/>
+        <div class="hint">
+          The distance to indicate the player is within range of the desired Y coordinate (number).
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col m6">
+        <label for="tierFaction">Tier Faction:</label>
+        <select id="tierFaction" data-bind="value: faction">
+          <option value="">Any Faction</option>
+          <option value="Templar">Templar</option>
+          <option value="Illuminati">Illuminati</option>
+          <option value="Dragon">Dragon</option>
+        </select>
+      </div>
+      <div class="col m6">
+        <label for="tierGender">Tier Gender:</label>
+        <select id="tierGender" data-bind="value: gender">
+          <option value="">Any Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
+    <hr class="soften" />
+
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col m12">
+        <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addLooksData">Add Looks</button>
+      </div>
+    </div>
+
+    <div class="row" data-bind="foreach: {
+        data: looksData,
+        beforeRemove: function(element) { $(element).slideUp(); },
+        afterAdd: function(element) {
+          var $element = $(element);
+          if ( $element.is('div') ) {
+            $('select').material_select();
+            $('.select2').select2({placeholder: '', allowClear: true});
+            if (!suppressAnimations) {
+              $element.hide().slideDown();
+              $.customScrollTo($element, 0);
+            }
+          }
+        }
+      }">
+        <!-- ko template: 'looks_data_template' --><!-- /ko -->
+    </div>
+
+    <!-- ko if: looksData().length > 0 -->
+    <div class="row">
+      <div class="col m12">
+        <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addLooksData">Add Looks</button>
+      </div>
+    </div>
+    <!-- /ko -->
+  </script>
+
+  <script type="text/html" id="looks_data_template">
+    <div class="col m12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+              <span>Looks</span>
+              <span class="right pointer" data-bind="click: function() { $parent.looksData.remove($data); }">
+                <i class="material-icons red-text">clear</i>
+                <span style="font-size: 16px; vertical-align: super;">Delete</span>
+              </span>
+            </div>
+        </div>
+        <div class="panel-body" style="margin-top: 10px;">
+          <div class="row">
+            <div class="input-field col m4">
+              <label data-bind="attr: { for: 'looks_rdbid_' + $index() }">RDB ID</label>
+              <input type="text" data-bind="textInput: rdbid, attr: { id: 'looks_rdbid_' + $index() }"/>
+              <div class="hint">The ID of the looks package to apply to the character. LooksRDB.xml is included in the Untold Stories directory.</div>
+            </div>
+            <div class="input-field col m4">
+              <label data-bind="attr: { for: 'looks_description_' + $index() }">Description (optional)</label>
+              <input type="text" data-bind="textInput: description, attr: { id: 'looks_description_' + $index() }"/>
+              <div class="hint">A description of the looks package. This is informational only and is chosen by the mission author.</div>
+            </div>
+            <div class="col m4">
+              <p>
+                <input type="checkbox" data-bind="checked: removeLooks, attr: { id: 'looks_remove_' + $index() }"/>
+                <label data-bind="attr: { for: 'looks_remove_' + $index() }">Remove Looks</label>
+              </p>
+              <p class="hint small">If checked, the specified looks package will be removed instead of added.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+  <!-- LOOKS TEMPLATE -->
+
+  <!-- ANIMATION TEMPLATE -->
+  <script type="text/html" id="animation_template">
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="input-field col m12">
+        <label for="tierDescription">Description</label>
+        <input id="tierDescription" type="text" data-bind="textInput: description"/>
+        <div class="hint">The tier description will appear in the mission status window.</div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="input-field col m6">
+        <label for="animTarget">Animation Target</label>
+        <input id="animTarget" type="text" data-bind="textInput: animTarget"/>
+        <div class="hint">Which characters are selected to apply the animations.</div>
+      </div>
+      <div class="input-field col m6">
+        <label for="targetQty">Target Quantity (optional)</label>
+        <input id="targetQty" type="text" data-bind="textInput: targetQty"/>
+        <div class="hint">The number of matching targets to select.</div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col m3">
+        <label for="tierPlayField" style="display: inline-block; margin-bottom: 10px;">Playfield (optional):</label>
+        <select id="tierPlayField" class="form-control select2 browser-default"
+          data-bind="options: playFields, optionsValue: 'id', optionsText: 'text', value: playField">
+        </select>
+      </div>
+      <div class="input-field col m3">
+        <label for="X_Coord">X Coordinate (optional)</label>
+        <input id="X_Coord" type="text" data-bind="textInput: X_Coord"/>
+        <div class="hint">The map horizontal coordinate (number).</div>
+      </div>
+      <div class="input-field col m3">
+        <label for="Z_Coord">Z Coordinate (optional)</label>
+        <input id="Z_Coord" type="text" data-bind="textInput: Z_Coord"/>
+        <div class="hint">The map vertical coordinate (number).</div>
+      </div>
+      <div class="input-field col m3">
+        <label for="Y_Coord">Y Coordinate (optional)</label>
+        <input id="Y_Coord" type="text" data-bind="textInput: Y_Coord"/>
+        <div class="hint">The height coordinate (number).</div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 50px;">
+      <div class="input-field col m6">
+        <label for="distance">Distance (optional)</label>
+        <input id="distance" type="text" data-bind="textInput: distance"/>
+        <div class="hint">
+          The distance to indicate the player is within range of the desired X and Z coordinates (number).
+        </div>
+      </div>
+      <div class="input-field col m6">
+        <label for="yDistance">yDistance (optional)</label>
+        <input id="yDistance" type="text" data-bind="textInput: yDistance"/>
+        <div class="hint">
+          The distance to indicate the player is within range of the desired Y coordinate (number).
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col m6">
+        <label for="tierFaction">Tier Faction:</label>
+        <select id="tierFaction" data-bind="value: faction">
+          <option value="">Any Faction</option>
+          <option value="Templar">Templar</option>
+          <option value="Illuminati">Illuminati</option>
+          <option value="Dragon">Dragon</option>
+        </select>
+      </div>
+      <div class="col m6">
+        <label for="tierGender">Tier Gender:</label>
+        <select id="tierGender" data-bind="value: gender">
+          <option value="">Any Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col m6">
+        <p>
+          <input id="tierSkipPrev" type="checkbox" data-bind="checked: skipPrev"/>
+          <label for="tierSkipPrev">Skip Previous</label>
+        </p>
+        <p class="hint small">If checked, the tier will be skipped over when the player presses the < (Previous) button in the mission window.</p>
+      </div>
+      <div class="col m6">
+        <p>
+          <input id="tierNoBell" type="checkbox" data-bind="checked: noBell"/>
+          <label for="tierNoBell">No Bell</label>
+        </p>
+        <p class="hint small">If checked, no sound will play when the tier is completed.</p>
+      </div>
+    </div>
+    <hr class="soften" />
+
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col m12">
+        <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addAnimData">Add Animation</button>
+      </div>
+    </div>
+
+    <div class="row" data-bind="foreach: {
+        data: animData,
+        beforeRemove: function(element) { $(element).slideUp(); },
+        afterAdd: function(element) {
+          var $element = $(element);
+          if ( $element.is('div') ) {
+            $('select').material_select();
+            $('.select2').select2({placeholder: '', allowClear: true});
+            if (!suppressAnimations) {
+              $element.hide().slideDown();
+              $.customScrollTo($element, 0);
+            }
+          }
+        }
+      }">
+        <!-- ko template: 'anim_data_template' --><!-- /ko -->
+    </div>
+
+    <!-- ko if: animData().length > 0 -->
+    <div class="row">
+      <div class="col m12">
+        <button type="button" class="btn waves-effect waves-light" data-bind="click: $root.addAnimData">Add Animation</button>
+      </div>
+    </div>
+    <!-- /ko -->
+  </script>
+
+  <script type="text/html" id="anim_data_template">
+    <div class="col m12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">
+              <span>Animation</span>
+              <span class="right pointer" data-bind="click: function() { $parent.animData.remove($data); }">
+                <i class="material-icons red-text">clear</i>
+                <span style="font-size: 16px; vertical-align: super;">Delete</span>
+              </span>
+            </div>
+        </div>
+        <div class="panel-body" style="margin-top: 10px;">
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="input-field col m6">
+              <label data-bind="attr: { for: 'anim_name_' + $index() }">Name</label>
+              <input type="text" data-bind="textInput: name, attr: { id: 'anim_name_' + $index() }"/>
+              <div class="hint">The name of the animation to play. See Animation.xml in the Untold Stories directory for a list of available animation names.</div>
+            </div>
+            <div class="input-field col m6">
+              <label data-bind="attr: { for: 'anim_duration_' + $index() }">Duration (optional)</label>
+              <input type="text" data-bind="textInput: duration, attr: { id: 'anim_duration_' + $index() }"/>
+              <div class="hint">The duration in seconds that the current animation will play before starting the next animation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+  <!-- ANIMATION TEMPLATE -->
 </html>

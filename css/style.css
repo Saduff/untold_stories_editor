@@ -48,6 +48,10 @@ label {
 	margin-left: 15px;
 }
 
+.select2.select2-container {
+	width: 100% !important;
+}
+
 @media (max-width: 1760px) {
 	#debugTier .select-wrapper {
 		margin-left: auto;

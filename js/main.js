@@ -4,7 +4,7 @@ function mainViewModel()
 {
 	var self = this;
 	self.tiers = ["Target","Location","Kill","Add Item","Use Item",
-					"Browser","Audio","Stop Audio","Dialog","Cinematic"];
+					"Browser","Audio","Stop Audio","Dialog","Cinematic","Looks","Animation"];
 
 	self.missionTitle = ko.observable('');
 	self.debugMode = ko.observable(false);
@@ -28,7 +28,7 @@ function mainViewModel()
 	self.addTier = function(data, event, suppressChangeTier)
 	{
 		var tier = {};
-		tier.index = new ko.observable(self.userTiers().length+1)
+		tier.index = new ko.observable(self.userTiers().length+1);
 		tier.text = data;
 		tier.type = tier.text.toLowerCase();
 
@@ -36,6 +36,8 @@ function mainViewModel()
 		tierData.description = new ko.observable();
 		tierData.faction = new ko.observable();
 		tierData.gender = new ko.observable();
+		tierData.skipPrev = new ko.observable();
+		tierData.noBell = new ko.observable();
 
 		// Create tier data
 		switch (data) {
@@ -45,12 +47,13 @@ function mainViewModel()
 				break;
 
 			case "Location":
-				tierData.playField = new ko.observable();
+				tierData.playField = new ko.observable(1000);
 				tierData.X_Coord = new ko.observable();
 				tierData.Y_Coord = new ko.observable();
 				tierData.Z_Coord = new ko.observable();
 				tierData.distance = new ko.observable();
 				tierData.yDistance = new ko.observable();
+				tierData.waypointName = new ko.observable();
 				break;
 
 			case "Kill":
@@ -70,11 +73,12 @@ function mainViewModel()
 				break;
 
 			case "Browser":
-				tierData.URL = new ko.observable();
+				tierData.URL = new ko.observable('');
 				tierData.browserTitle = new ko.observable();
 				tierData.hideAddress = new ko.observable();
 				tierData.width = new ko.observable();
 				tierData.height = new ko.observable();
+				tierData.response = new ko.observable();
 				break;
 
 			case "Audio":
@@ -90,12 +94,53 @@ function mainViewModel()
 
 			case "Dialog":
 				tierData.speed = new ko.observable();
+				tierData.contAudio = new ko.observable();
 				tierData.dialogData = new ko.observableArray([]);
 				break;
 
 			case "Cinematic":
-				tierData.playField = new ko.observable();
+				tierData.playField = new ko.observable(1000);
+				tierData.contAudio = new ko.observable();
 				tierData.cinematicData = new ko.observableArray([]);
+				tierData.selectedTier = new ko.observable();
+
+				tierData.cinematicData.subscribe(function(){
+					if (!tierData.cinematicData().length) {
+						$("#context-menu").hide();
+					}
+
+					for (var i = 0; i < tierData.cinematicData().length; i++) {
+						tierData.cinematicData()[i].index(i+1);
+					}
+				});
+				break;
+
+			case "Looks":
+				tierData.playField = new ko.observable();
+				tierData.X_Coord = new ko.observable();
+				tierData.Y_Coord = new ko.observable();
+				tierData.Z_Coord = new ko.observable();
+				tierData.distance = new ko.observable();
+				tierData.yDistance = new ko.observable();
+				tierData.targetQty = new ko.observable();
+				tierData.looksTarget = new ko.observable();
+				tierData.keepLooks = new ko.observable();
+				tierData.resetLooks = new ko.observable;
+				tierData.invisible = new ko.observable();
+				tierData.delay = new ko.observable();
+				tierData.looksData = new ko.observableArray([]);
+				break;
+
+			case "Animation":
+				tierData.playField = new ko.observable();
+				tierData.X_Coord = new ko.observable();
+				tierData.Y_Coord = new ko.observable();
+				tierData.Z_Coord = new ko.observable();
+				tierData.distance = new ko.observable();
+				tierData.yDistance = new ko.observable();
+				tierData.targetQty = new ko.observable();
+				tierData.animTarget = new ko.observable();
+				tierData.animData = new ko.observableArray([]);
 				break;
 		}
 
@@ -114,22 +159,51 @@ function mainViewModel()
 				event.preventDefault();
 
 				if ( $(event.currentTarget).attr('id') == "moveLeft" ) {
-					self.moveLeft();
+					self.moveLeft("tiers");
 				} else if ( $(event.currentTarget).attr('id') == "moveRight" ) {
-					self.moveRight();
+					self.moveRight("tiers");
 				} else if ( $(event.currentTarget).attr('id') == "deleteTier" ) {
-					self.deleteTier();
+					self.deleteTier("tiers");
 				}
 			}
 		});
 	}
 
-	self.changeTier = function(data, event)
+	self.changeTier = function(data, event, cinematic)
 	{
-		if (self.selectedTier() == data) return;
-		self.selectedTier(data);
-		$("#tiersList li").removeClass("active");
-		$(event.currentTarget).addClass("active");
+		if (cinematic) {
+			if (cinematic.selectedTier() == data) return;
+			cinematic.selectedTier(data);
+			$("#cinematicData li").removeClass("active");
+			$(event.currentTarget).addClass("active");
+		} else {
+			if (self.selectedTier() == data) return;
+			self.selectedTier(data);
+			$("#tiersList li").removeClass("active");
+			$(event.currentTarget).addClass("active");
+
+			if (data.type == "cinematic") {
+				if (data.tierData.selectedTier()) {
+					var index = data.tierData.selectedTier().index();
+					$("#cinematicData li:nth-child(" + index + ")").addClass("active");
+				}
+
+				$(".context-menu").contextmenu({
+					target: '#context-menu',
+					onItem: function(context, event) {
+						event.preventDefault();
+
+						if ( $(event.currentTarget).attr('id') == "moveLeft" ) {
+							self.moveLeft("cinematic");
+						} else if ( $(event.currentTarget).attr('id') == "moveRight" ) {
+							self.moveRight("cinematic");
+						} else if ( $(event.currentTarget).attr('id') == "deleteTier" ) {
+							self.deleteTier("cinematic");
+						}
+					}
+				});
+			}
+		}
 	}
 
 	self.contextMenuShown = function(data)
@@ -137,35 +211,78 @@ function mainViewModel()
 		self.contextMenuItem = data;
 	}
 
-	self.moveLeft = function()
+	self.moveLeft = function(parent)
 	{
 		if (self.contextMenuItem.index() <= 1) return;
-		self.userTiers.swap(self.contextMenuItem.index()-1, self.contextMenuItem.index()-2);
+
+		if (parent == "tiers") {
+			self.userTiers.swap(self.contextMenuItem.index()-1, self.contextMenuItem.index()-2);
+		}
+		else if (parent == "cinematic") {
+			self.selectedTier().tierData.cinematicData.swap(self.contextMenuItem.index()-1, self.contextMenuItem.index()-2);
+		}
 	}
 
-	self.moveRight = function()
+	self.moveRight = function(parent)
 	{
-		if (self.contextMenuItem.index() == self.userTiers().length) return;
-		self.userTiers.swap(self.contextMenuItem.index()-1, self.contextMenuItem.index());
+		if (parent == "tiers") {
+			if (self.contextMenuItem.index() == self.userTiers().length) return;
+			self.userTiers.swap(self.contextMenuItem.index()-1, self.contextMenuItem.index());
+		}
+		else if (parent == "cinematic") {
+			if (self.contextMenuItem.index() == self.selectedTier().tierData.cinematicData().length) return;
+			self.selectedTier().tierData.cinematicData.swap(self.contextMenuItem.index()-1, self.contextMenuItem.index());	
+		}
 	}
 
-	self.deleteTier = function()
+	self.deleteTier = function(parent)
 	{
-		self.userTiers.remove(self.contextMenuItem);
-		self.selectedTier(self.userTiers()[self.userTiers().length-1]);
-		$("#tiersList li").removeClass("active");
-		$("#tiersList li:last").addClass("active");
+		if (parent == "tiers") {
+			self.userTiers.remove(self.contextMenuItem);
+			self.selectedTier(self.userTiers()[self.userTiers().length-1]);
+			$("#tiersList li").removeClass("active");
+			$("#tiersList li:last").addClass("active");
+
+			if (self.selectedTier() && self.selectedTier().type == "cinematic") {
+				if (self.selectedTier().tierData.selectedTier()) {
+					var index = self.selectedTier().tierData.selectedTier().index();
+					$("#cinematicData li:nth-child(" + index + ")").addClass("active");
+				}
+
+				$(".context-menu").contextmenu({
+					target: '#context-menu',
+					onItem: function(context, event) {
+						event.preventDefault();
+
+						if ( $(event.currentTarget).attr('id') == "moveLeft" ) {
+							self.moveLeft("cinematic");
+						} else if ( $(event.currentTarget).attr('id') == "moveRight" ) {
+							self.moveRight("cinematic");
+						} else if ( $(event.currentTarget).attr('id') == "deleteTier" ) {
+							self.deleteTier("cinematic");
+						}
+					}
+				});
+			}
+		}
+		else if (parent == "cinematic") {
+			self.selectedTier().tierData.cinematicData.remove(self.contextMenuItem);
+			var selected = self.selectedTier().tierData.cinematicData()[self.selectedTier().tierData.cinematicData().length-1];
+			self.selectedTier().tierData.selectedTier(selected);
+			$("#cinematicData li").removeClass("active");
+			$("#cinematicData li:last").addClass("active");
+		}
 	}
 
 	self.addDialogData = function(data, event, type, suppressAnimations)
 	{
 		data.suppressAnimations = suppressAnimations;
 		var dialogData = {};
-		dialogData.faction = new ko.observable();
-		dialogData.gender = new ko.observable();
 
 		switch (type) {
 			case "dialog_line":
+				dialogData.faction = new ko.observable();
+				dialogData.gender = new ko.observable();
 				dialogData.line = new ko.observable('');
 				dialogData.duration = new ko.observable();
 				break;
@@ -176,6 +293,8 @@ function mainViewModel()
 				break;
 
 			case "dialog_audio":
+				dialogData.faction = new ko.observable();
+				dialogData.gender = new ko.observable();
 				dialogData.URL = new ko.observable();
 				dialogData.volume = new ko.observable();
 				break;
@@ -188,9 +307,11 @@ function mainViewModel()
 	{
 		data.suppressAnimations = suppressAnimations;
 		var cinematicData = {};
+		var index = new ko.observable(data.cinematicData().length+1);
 
 		switch (type) {
 			case "cinematic_dialog_line":
+				var text = "Dialog Line";
 				cinematicData.faction = new ko.observable();
 				cinematicData.gender = new ko.observable();
 				cinematicData.line = new ko.observable('');
@@ -198,13 +319,17 @@ function mainViewModel()
 				break;
 
 			case "cinematic_fadeout":
+				var text = "Fade Out";
+				cinematicData.duration = new ko.observable();
+				break;
+
 			case "cinematic_fadein":
-				cinematicData.faction = new ko.observable();
-				cinematicData.gender = new ko.observable();
+				var text = "Fade In";
 				cinematicData.duration = new ko.observable();
 				break;
 
 			case "cinematic_audio":
+				var text = "Audio";
 				cinematicData.faction = new ko.observable();
 				cinematicData.gender = new ko.observable();
 				cinematicData.URL = new ko.observable();
@@ -212,6 +337,7 @@ function mainViewModel()
 				break;
 
 			case "cinematic_camera":
+				var text = "Camera Moevement";
 				cinematicData.duration = new ko.observable();
 				cinematicData.posX = new ko.observable();
 				cinematicData.posY = new ko.observable();
@@ -222,17 +348,99 @@ function mainViewModel()
 				cinematicData.ease = new ko.observable();
 				break;
 
+			case "cinematic_facetarget":
+				var text = "Face Target";
+				break;
+
 			case "cinematic_facenpc":
+				var text = "Face NPC";
 				cinematicData.name = new ko.observable();
 				break;
 
 			case "cinematic_facecoords":
+				var text = "Face Coordinates";
 				cinematicData.X_Coord = new ko.observable();
 				cinematicData.Z_Coord = new ko.observable();
 				break;
+
+			case "cinematic_looks":
+				var text = "Looks";
+				cinematicData.description = new ko.observable();
+				cinematicData.faction = new ko.observable();
+				cinematicData.gender = new ko.observable();
+				cinematicData.playField = new ko.observable();
+				cinematicData.X_Coord = new ko.observable();
+				cinematicData.Y_Coord = new ko.observable();
+				cinematicData.Z_Coord = new ko.observable();
+				cinematicData.distance = new ko.observable();
+				cinematicData.yDistance = new ko.observable();
+				cinematicData.targetQty = new ko.observable();
+				cinematicData.looksTarget = new ko.observable();
+				cinematicData.keepLooks = new ko.observable();
+				cinematicData.resetLooks = new ko.observable;
+				cinematicData.invisible = new ko.observable();
+				cinematicData.delay = new ko.observable();
+				cinematicData.looksData = new ko.observableArray([]);
+				break;
+
+			case "cinematic_animation":
+				var text = "Animation";
+				cinematicData.description = new ko.observable();
+				cinematicData.faction = new ko.observable();
+				cinematicData.gender = new ko.observable();
+				cinematicData.playField = new ko.observable();
+				cinematicData.X_Coord = new ko.observable();
+				cinematicData.Y_Coord = new ko.observable();
+				cinematicData.Z_Coord = new ko.observable();
+				cinematicData.distance = new ko.observable();
+				cinematicData.yDistance = new ko.observable();
+				cinematicData.targetQty = new ko.observable();
+				cinematicData.animTarget = new ko.observable();
+				cinematicData.animData = new ko.observableArray([]);
+				break;
 		}
 
-		data.cinematicData.push({type: type, data: cinematicData});
+		data.cinematicData.push({index: index, type: type, text: text, data: cinematicData});
+
+		if (!suppressAnimations) {
+			data.selectedTier(data.cinematicData()[data.cinematicData().length-1]);
+			$("#cinematicData li").removeClass("active");
+			$("#cinematicData li:last").addClass("active");
+		}
+
+		$(".context-menu").contextmenu({
+			target: '#context-menu',
+			onItem: function(context, event) {
+				event.preventDefault();
+
+				if ( $(event.currentTarget).attr('id') == "moveLeft" ) {
+					self.moveLeft("cinematic");
+				} else if ( $(event.currentTarget).attr('id') == "moveRight" ) {
+					self.moveRight("cinematic");
+				} else if ( $(event.currentTarget).attr('id') == "deleteTier" ) {
+					self.deleteTier("cinematic");
+				}
+			}
+		});
+	}
+
+	self.addLooksData = function(data, event, suppressAnimations)
+	{
+		data.suppressAnimations = suppressAnimations;
+		var looksData = {};
+		looksData.description = new ko.observable();
+		looksData.rdbid = new ko.observable();
+		looksData.removeLooks = new ko.observable();
+		data.looksData.push(looksData);
+	}
+
+	self.addAnimData = function(data, event, suppressAnimations)
+	{
+		data.suppressAnimations = suppressAnimations;
+		var animData = {};
+		animData.name = new ko.observable();
+		animData.duration = new ko.observable();
+		data.animData.push(animData);
 	}
 
 	self.generateXML = function()
@@ -266,6 +474,8 @@ function mainViewModel()
 			if ( tier.tierData.description() ) tierTag.setAttribute("description", tier.tierData.description());
 			if ( tier.tierData.faction() ) tierTag.setAttribute("faction", tier.tierData.faction());
 			if ( tier.tierData.gender() ) tierTag.setAttribute("gender", tier.tierData.gender());
+			if ( tier.tierData.skipPrev() ) tierTag.setAttribute("skipPrev", "true");
+			if ( tier.tierData.noBell() ) tierTag.setAttribute("noBell", "true");
 
 			switch (tier.text) {
 				case "Target":
@@ -280,6 +490,7 @@ function mainViewModel()
 					tierTag.setAttribute("z", tier.tierData.Z_Coord());
 					tierTag.setAttribute("distance", tier.tierData.distance());
 					tierTag.setAttribute("yDistance", tier.tierData.yDistance());
+					if ( tier.tierData.waypointName() ) tierTag.setAttribute("waypointName", tier.tierData.waypointName());
 					break;
 
 				case "Kill":
@@ -302,11 +513,12 @@ function mainViewModel()
 					if ( tier.tierData.hideAddress() ) tierTag.setAttribute("hideAddress", "true");
 					if ( tier.tierData.width() ) tierTag.setAttribute("width", tier.tierData.width());
 					if ( tier.tierData.height() ) tierTag.setAttribute("height", tier.tierData.height());
+					if ( tier.tierData.response() ) tierTag.setAttribute("response", tier.tierData.response());
 					break;
 
 				case "Audio":
 					tierTag.setAttribute("url", tier.tierData.URL());
-					if ( tier.tierData.preload() ) tierTag.setAttribute("preload", "true");
+					if ( tier.tierData.preload() ) tierTag.setAttribute("preload", tier.tierData.preload());
 					if ( tier.tierData.volume() ) tierTag.setAttribute("volume", tier.tierData.volume());
 					if ( tier.tierData.loop() ) tierTag.setAttribute("loop", "true");
 					break;
@@ -317,6 +529,7 @@ function mainViewModel()
 
 				case "Dialog":
 					if ( tier.tierData.speed() ) tierTag.setAttribute("speed", tier.tierData.speed());
+					if ( tier.tierData.contAudio() ) tierTag.setAttribute("contAudio", "true");
 
 					for (var j = 0; j < tier.tierData.dialogData().length; j++) {
 						var dialog = tier.tierData.dialogData()[j];
@@ -334,15 +547,11 @@ function mainViewModel()
 							case "dialog_fadeout":
 								dialogTag.setAttribute("type", "fadeout");
 								dialogTag.setAttribute("duration", dialog.data.duration());
-								if ( dialog.data.faction() ) dialogTag.setAttribute("faction", dialog.data.faction());
-								if ( dialog.data.gender() ) dialogTag.setAttribute("gender", dialog.data.gender());
 								break;
 
 							case "dialog_fadein":
 								dialogTag.setAttribute("type", "fadein");
 								dialogTag.setAttribute("duration", dialog.data.duration());
-								if ( dialog.data.faction() ) dialogTag.setAttribute("faction", dialog.data.faction());
-								if ( dialog.data.gender() ) dialogTag.setAttribute("gender", dialog.data.gender());
 								break;
 
 							case "dialog_audio":
@@ -356,11 +565,11 @@ function mainViewModel()
 
 						tierTag.addChildElement(dialogTag);
 					}
-
 					break;
 
 				case "Cinematic":
 					tierTag.setAttribute("playField", tier.tierData.playField());
+					if ( tier.tierData.contAudio() ) tierTag.setAttribute("contAudio", "true");
 
 					for (var j = 0; j < tier.tierData.cinematicData().length; j++) {
 						var cinematic = tier.tierData.cinematicData()[j];
@@ -378,15 +587,11 @@ function mainViewModel()
 							case "cinematic_fadeout":
 								cinematicTag.setAttribute("type", "fadeout");
 								cinematicTag.setAttribute("duration", cinematic.data.duration());
-								if ( cinematic.data.faction() ) cinematicTag.setAttribute("faction", cinematic.data.faction());
-								if ( cinematic.data.gender() ) cinematicTag.setAttribute("gender", cinematic.data.gender());
 								break;
 
 							case "cinematic_fadein":
 								cinematicTag.setAttribute("type", "fadein");
 								cinematicTag.setAttribute("duration", cinematic.data.duration());
-								if ( cinematic.data.faction() ) cinematicTag.setAttribute("faction", cinematic.data.faction());
-								if ( cinematic.data.gender() ) cinematicTag.setAttribute("gender", cinematic.data.gender());
 								break;
 
 							case "cinematic_audio":
@@ -427,10 +632,101 @@ function mainViewModel()
 								cinematicTag.setAttribute("x", cinematic.data.X_Coord());
 								cinematicTag.setAttribute("z", cinematic.data.Z_Coord());
 								break;
+
+							case "cinematic_looks":
+								cinematicTag.setAttribute("type", "looks");
+								cinematicTag.setAttribute("looksTarget", cinematic.data.looksTarget());
+								if ( cinematic.data.description() ) cinematicTag.setAttribute("description", cinematic.data.description());
+								if ( cinematic.data.targetQty() ) cinematicTag.setAttribute("targetQty", cinematic.data.targetQty());
+								if ( cinematic.data.delay() ) cinematicTag.setAttribute("delay", cinematic.data.delay());
+								if ( cinematic.data.keepLooks() ) cinematicTag.setAttribute("keepLooks", "true");
+								if ( cinematic.data.resetLooks() ) cinematicTag.setAttribute("resetLooks", "true");
+								if ( cinematic.data.invisible() ) cinematicTag.setAttribute("invisible", "true");
+								if ( cinematic.data.playField() ) cinematicTag.setAttribute("playField", cinematic.data.playField());
+								if ( cinematic.data.X_Coord() ) cinematicTag.setAttribute("x", cinematic.data.X_Coord());
+								if ( cinematic.data.Y_Coord() ) cinematicTag.setAttribute("y", cinematic.data.Y_Coord());
+								if ( cinematic.data.Z_Coord() ) cinematicTag.setAttribute("z", cinematic.data.Z_Coord());
+								if ( cinematic.data.distance() ) cinematicTag.setAttribute("distance", cinematic.data.distance());
+								if ( cinematic.data.yDistance() ) cinematicTag.setAttribute("yDistance", cinematic.data.yDistance());
+
+								for (var k = 0; k < cinematic.data.looksData().length; k++) {
+									var looks = cinematic.data.looksData()[k];
+									var looksTag = new marknote.Element("looks");
+									looksTag.setAttribute("rdbid", looks.rdbid());
+									if ( looks.description() ) looksTag.setAttribute("description", looks.description());
+									if ( looks.removeLooks() ) looksTag.setAttribute("removeLooks", "true");
+									cinematicTag.addChildElement(looksTag);
+								}
+								break;
+
+							case "cinematic_animation":
+								cinematicTag.setAttribute("type", "animation");
+								cinematicTag.setAttribute("animTarget", cinematic.data.animTarget());
+								if ( cinematic.data.description() ) cinematicTag.setAttribute("description", cinematic.data.description());
+								if ( cinematic.data.targetQty() ) cinematicTag.setAttribute("targetQty", cinematic.data.targetQty());
+								if ( cinematic.data.playField() ) cinematicTag.setAttribute("playField", cinematic.data.playField());
+								if ( cinematic.data.X_Coord() ) cinematicTag.setAttribute("x", cinematic.data.X_Coord());
+								if ( cinematic.data.Y_Coord() ) cinematicTag.setAttribute("y", cinematic.data.Y_Coord());
+								if ( cinematic.data.Z_Coord() ) cinematicTag.setAttribute("z", cinematic.data.Z_Coord());
+								if ( cinematic.data.distance() ) cinematicTag.setAttribute("distance", cinematic.data.distance());
+								if ( cinematic.data.yDistance() ) cinematicTag.setAttribute("yDistance", cinematic.data.yDistance());
+
+								for (var k = 0; k < cinematic.data.animData().length; k++) {
+									var animation = cinematic.data.animData()[k];
+									var animTag = new marknote.Element("animation");
+									animTag.setAttribute("name", animation.name());
+									if ( animation.duration() ) animTag.setAttribute("duration", animation.duration());
+									cinematicTag.addChildElement(animTag);
+								}
+								break;
 						}
 
 						tierTag.addChildElement(cinematicTag);
 					}
+					break;
+
+				case "Looks":
+					tierTag.setAttribute("looksTarget", tier.tierData.looksTarget());
+					if ( tier.tierData.targetQty() ) tierTag.setAttribute("targetQty", tier.tierData.targetQty());
+					if ( tier.tierData.delay() ) tierTag.setAttribute("delay", tier.tierData.delay());
+					if ( tier.tierData.keepLooks() ) tierTag.setAttribute("keepLooks", "true");
+					if ( tier.tierData.resetLooks() ) tierTag.setAttribute("resetLooks", "true");
+					if ( tier.tierData.invisible() ) tierTag.setAttribute("invisible", "true");
+					if ( tier.tierData.playField() ) tierTag.setAttribute("playField", tier.tierData.playField());
+					if ( tier.tierData.X_Coord() ) tierTag.setAttribute("x", tier.tierData.X_Coord());
+					if ( tier.tierData.Y_Coord() ) tierTag.setAttribute("y", tier.tierData.Y_Coord());
+					if ( tier.tierData.Z_Coord() ) tierTag.setAttribute("z", tier.tierData.Z_Coord());
+					if ( tier.tierData.distance() ) tierTag.setAttribute("distance", tier.tierData.distance());
+					if ( tier.tierData.yDistance() ) tierTag.setAttribute("yDistance", tier.tierData.yDistance());
+
+					for (var j = 0; j < tier.tierData.looksData().length; j++) {
+						var looks = tier.tierData.looksData()[j];
+						var looksTag = new marknote.Element("looks");
+						looksTag.setAttribute("rdbid", looks.rdbid());
+						if ( looks.description() ) looksTag.setAttribute("description", looks.description());
+						if ( looks.removeLooks() ) looksTag.setAttribute("removeLooks", "true");
+						tierTag.addChildElement(looksTag);
+					}
+					break;
+
+				case "Animation":
+					tierTag.setAttribute("animTarget", tier.tierData.animTarget());
+					if ( tier.tierData.targetQty() ) tierTag.setAttribute("targetQty", tier.tierData.targetQty());
+					if ( tier.tierData.playField() ) tierTag.setAttribute("playField", tier.tierData.playField());
+					if ( tier.tierData.X_Coord() ) tierTag.setAttribute("x", tier.tierData.X_Coord());
+					if ( tier.tierData.Y_Coord() ) tierTag.setAttribute("y", tier.tierData.Y_Coord());
+					if ( tier.tierData.Z_Coord() ) tierTag.setAttribute("z", tier.tierData.Z_Coord());
+					if ( tier.tierData.distance() ) tierTag.setAttribute("distance", tier.tierData.distance());
+					if ( tier.tierData.yDistance() ) tierTag.setAttribute("yDistance", tier.tierData.yDistance());
+
+					for (var j = 0; j < tier.tierData.animData().length; j++) {
+						var animation = tier.tierData.animData()[j];
+						var animTag = new marknote.Element("animation");
+						animTag.setAttribute("name", animation.name());
+						if ( animation.duration() ) animTag.setAttribute("duration", animation.duration());
+						tierTag.addChildElement(animTag);
+					}
+					break;
 			}
 
 			missionTag.addChildElement(tierTag);
@@ -495,9 +791,15 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.targetName(tierTag.getAttributeValue("targetName"));
 					var isOffensiveTarget = tierTag.getAttributeValue("isOffensiveTarget");
-					isOffensiveTarget = (isOffensiveTarget == "true") ? true : false;
+          isOffensiveTarget = isOffensiveTarget == "true" ? true : false;
 					tier.tierData.isOffensiveTarget(isOffensiveTarget);
 					break;
 
@@ -507,12 +809,19 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.playField(tierTag.getAttributeValue("playField"));
 					tier.tierData.X_Coord(tierTag.getAttributeValue("x"));
 					tier.tierData.Y_Coord(tierTag.getAttributeValue("y"));
 					tier.tierData.Z_Coord(tierTag.getAttributeValue("z"));
 					tier.tierData.distance(tierTag.getAttributeValue("distance"));
 					tier.tierData.yDistance(tierTag.getAttributeValue("yDistance"));
+          tier.tierData.waypointName(tierTag.getAttributeValue("waypointName"));
 					break;
 
 				case "kill":
@@ -521,6 +830,12 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.targetName(tierTag.getAttributeValue("targetName"));
 					tier.tierData.targetKills(tierTag.getAttributeValue("targetKills"));
 					break;
@@ -531,6 +846,12 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.itemName(tierTag.getAttributeValue("itemName"));
 					var autoUseItem = tierTag.getAttributeValue("autoUseItem");
 					autoUseItem = (autoUseItem == "true") ? true : false;
@@ -543,6 +864,12 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.itemName(tierTag.getAttributeValue("itemName"));
 					break;
 
@@ -552,6 +879,12 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.URL(tierTag.getAttributeValue("url"));
 					tier.tierData.browserTitle(tierTag.getAttributeValue("browserTitle"));
 					var hideAddress = tierTag.getAttributeValue("hideAddress");
@@ -559,6 +892,7 @@ function mainViewModel()
 					tier.tierData.hideAddress(hideAddress);
 					tier.tierData.width(tierTag.getAttributeValue("width"));
 					tier.tierData.height(tierTag.getAttributeValue("height"));
+          tier.tierData.response(tierTag.getAttributeValue("response"));
 					break;
 
 				case "audio":
@@ -572,10 +906,14 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.URL(tierTag.getAttributeValue("url"));
-					var preload = tierTag.getAttributeValue("preload");
-					preload = (preload == "true") ? true : false;
-					tier.tierData.preload(preload);
+					tier.tierData.preload(tierTag.getAttributeValue("preload"));
 					tier.tierData.volume(tierTag.getAttributeValue("volume"));
 					var loop = tierTag.getAttributeValue("loop");
 					loop = (loop == "true") ? true : false;
@@ -588,7 +926,14 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.speed(tierTag.getAttributeValue("speed"));
+          tier.tierData.contAudio(tierTag.getAttributeValue("contAudio"));
 					var dialogTags = tierTag.getChildElements();
 
 					for (var j = 0; j < dialogTags.length; j++) {
@@ -609,16 +954,12 @@ function mainViewModel()
 								self.addDialogData(tier.tierData, null, "dialog_fadeout", true);
 								var dialogData = tier.tierData.dialogData()[tier.tierData.dialogData().length-1].data;
 								dialogData.duration(dialogTag.getAttributeValue("duration"));
-								dialogData.faction(dialogTag.getAttributeValue("faction"));
-								dialogData.gender(dialogTag.getAttributeValue("gender"));
 								break;
 
 							case "fadein":
 								self.addDialogData(tier.tierData, null, "dialog_fadein", true);
 								var dialogData = tier.tierData.dialogData()[tier.tierData.dialogData().length-1].data;
 								dialogData.duration(dialogTag.getAttributeValue("duration"));
-								dialogData.faction(dialogTag.getAttributeValue("faction"));
-								dialogData.gender(dialogTag.getAttributeValue("gender"));
 								break;
 
 							case "audio":
@@ -631,7 +972,6 @@ function mainViewModel()
 								break;
 						}
 					}
-
 					break;
 
 				case "cinematic":
@@ -640,7 +980,14 @@ function mainViewModel()
 					tier.tierData.description(tierTag.getAttributeValue("description"));
 					tier.tierData.faction(tierTag.getAttributeValue("faction"));
 					tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
 					tier.tierData.playField(tierTag.getAttributeValue("playField"));
+          tier.tierData.contAudio(tierTag.getAttributeValue("contAudio"));
 					var cinematicTags = tierTag.getChildElements();
 
 					for (var j = 0; j < cinematicTags.length; j++) {
@@ -661,16 +1008,12 @@ function mainViewModel()
 								self.addCinematicData(tier.tierData, null, "cinematic_fadeout", true);
 								var cinematicData = tier.tierData.cinematicData()[tier.tierData.cinematicData().length-1].data;
 								cinematicData.duration(cinematicTag.getAttributeValue("duration"));
-								cinematicData.faction(cinematicTag.getAttributeValue("faction"));
-								cinematicData.gender(cinematicTag.getAttributeValue("gender"));
 								break;
 
 							case "fadein":
 								self.addCinematicData(tier.tierData, null, "cinematic_fadein", true);
 								var cinematicData = tier.tierData.cinematicData()[tier.tierData.cinematicData().length-1].data;
 								cinematicData.duration(cinematicTag.getAttributeValue("duration"));
-								cinematicData.faction(cinematicTag.getAttributeValue("faction"));
-								cinematicData.gender(cinematicTag.getAttributeValue("gender"));
 								break;
 
 							case "audio":
@@ -711,10 +1054,147 @@ function mainViewModel()
 								cinematicData.X_Coord(cinematicTag.getAttributeValue("x"));
 								cinematicData.Z_Coord(cinematicTag.getAttributeValue("z"));
 								break;
+
+              case "looks":
+                self.addCinematicData(tier.tierData, null, "cinematic_looks", true);
+                var cinematicData = tier.tierData.cinematicData()[tier.tierData.cinematicData().length-1].data;
+                cinematicData.description(cinematicTag.getAttributeValue("description"));
+                cinematicData.faction(cinematicTag.getAttributeValue("faction"));
+                cinematicData.gender(cinematicTag.getAttributeValue("gender"));
+                cinematicData.looksTarget(cinematicTag.getAttributeValue("looksTarget"));
+                cinematicData.targetQty(cinematicTag.getAttributeValue("targetQty"));
+                cinematicData.delay(cinematicTag.getAttributeValue("delay"));
+                var keepLooks = cinematicTag.getAttributeValue("keepLooks");
+                keepLooks = (keepLooks == "true") ? true : false;
+                cinematicData.keepLooks(keepLooks);
+                var resetLooks = cinematicTag.getAttributeValue("resetLooks");
+                resetLooks = (resetLooks == "true") ? true : false;
+                cinematicData.resetLooks(resetLooks);
+                var invisible = cinematicTag.getAttributeValue("invisible");
+                invisible = (invisible == "true") ? true : false;
+                cinematicData.invisible(invisible);
+                cinematicData.playField(cinematicTag.getAttributeValue("playField"));
+                cinematicData.X_Coord(cinematicTag.getAttributeValue("x"));
+                cinematicData.Y_Coord(cinematicTag.getAttributeValue("y"));
+                cinematicData.Z_Coord(cinematicTag.getAttributeValue("z"));
+                cinematicData.distance(cinematicTag.getAttributeValue("distance"));
+                cinematicData.yDistance(cinematicTag.getAttributeValue("yDistance"));
+                var looksTags = cinematicTag.getChildElements();
+
+                for (var k = 0; k < looksTags.length; k++) {
+                  var looksTag = looksTags[k];
+                  self.addLooksData(cinematicData, null, true);
+                  var looksData = cinematicData.looksData()[cinematicData.looksData().length-1];
+                  looksData.rdbid(looksTag.getAttributeValue("rdbid"));
+                  looksData.description(looksTag.getAttributeValue("description"));
+                  var removeLooks = looksTag.getAttributeValue("removeLooks");
+                  removeLooks = (removeLooks == "true") ? true : false;
+                  looksData.removeLooks(removeLooks);
+                }
+                break;
+
+              case "animation":
+                self.addCinematicData(tier.tierData, null, "cinematic_animation", true);
+                var cinematicData = tier.tierData.cinematicData()[tier.tierData.cinematicData().length-1].data;
+                cinematicData.description(cinematicTag.getAttributeValue("description"));
+                cinematicData.faction(cinematicTag.getAttributeValue("faction"));
+                cinematicData.gender(cinematicTag.getAttributeValue("gender"));
+                cinematicData.animTarget(cinematicTag.getAttributeValue("animTarget"));
+                cinematicData.targetQty(cinematicTag.getAttributeValue("targetQty"));
+                cinematicData.playField(cinematicTag.getAttributeValue("playField"));
+                cinematicData.X_Coord(cinematicTag.getAttributeValue("x"));
+                cinematicData.Y_Coord(cinematicTag.getAttributeValue("y"));
+                cinematicData.Z_Coord(cinematicTag.getAttributeValue("z"));
+                cinematicData.distance(cinematicTag.getAttributeValue("distance"));
+                cinematicData.yDistance(cinematicTag.getAttributeValue("yDistance"));
+                var animTags = cinematicTag.getChildElements();
+
+                for (var k = 0; k < animTags.length; k++) {
+                  var animTag = animTags[k];
+                  self.addAnimData(cinematicData, null, true);
+                  var animData = cinematicData.animData()[cinematicData.animData().length-1];
+                  animData.name(animTag.getAttributeValue("name"));
+                  animData.duration(animTag.getAttributeValue("duration"));
+                }
+                break;
 						}
 					}
-
 					break;
+
+        case "looks":
+          self.addTier("Looks", null, true);
+          var tier = self.userTiers()[self.userTiers().length-1];
+          tier.tierData.description(tierTag.getAttributeValue("description"));
+          tier.tierData.faction(tierTag.getAttributeValue("faction"));
+          tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
+          tier.tierData.looksTarget(tierTag.getAttributeValue("looksTarget"));
+          tier.tierData.targetQty(tierTag.getAttributeValue("targetQty"));
+          tier.tierData.delay(tierTag.getAttributeValue("delay"));
+          var keepLooks = tierTag.getAttributeValue("keepLooks");
+          keepLooks = (keepLooks == "true") ? true : false;
+          tier.tierData.keepLooks(keepLooks);
+          var resetLooks = tierTag.getAttributeValue("resetLooks");
+          resetLooks = (resetLooks == "true") ? true : false;
+          tier.tierData.resetLooks(resetLooks);
+          var invisible = tierTag.getAttributeValue("invisible");
+          invisible = (invisible == "true") ? true : false;
+          tier.tierData.invisible(invisible);
+          tier.tierData.playField(tierTag.getAttributeValue("playField"));
+          tier.tierData.X_Coord(tierTag.getAttributeValue("x"));
+          tier.tierData.Y_Coord(tierTag.getAttributeValue("y"));
+          tier.tierData.Z_Coord(tierTag.getAttributeValue("z"));
+          tier.tierData.distance(tierTag.getAttributeValue("distance"));
+          tier.tierData.yDistance(tierTag.getAttributeValue("yDistance"));
+          var looksTags = tierTag.getChildElements();
+
+          for (var j = 0; j < looksTags.length; j++) {
+            var looksTag = looksTags[j];
+            self.addLooksData(tier.tierData, null, true);
+            var looksData = tier.tierData.looksData()[tier.tierData.looksData().length-1];
+            looksData.rdbid(looksTag.getAttributeValue("rdbid"));
+            looksData.description(looksTag.getAttributeValue("description"));
+            var removeLooks = looksTag.getAttributeValue("removeLooks");
+            removeLooks = (removeLooks == "true") ? true : false;
+            looksData.removeLooks(removeLooks);
+          }
+          break;
+
+        case "animation":
+          self.addTier("Animation", null, true);
+          var tier = self.userTiers()[self.userTiers().length-1];
+          tier.tierData.description(tierTag.getAttributeValue("description"));
+          tier.tierData.faction(tierTag.getAttributeValue("faction"));
+          tier.tierData.gender(tierTag.getAttributeValue("gender"));
+          var skipPrev = tierTag.getAttributeValue("skipPrev");
+          skipPrev = (skipPrev == "true") ? true : false;
+          var noBell = tierTag.getAttributeValue("noBell");
+          noBell = (noBell == "true") ? true : false;
+          tier.tierData.skipPrev(skipPrev);
+          tier.tierData.noBell(noBell);
+          tier.tierData.animTarget(tierTag.getAttributeValue("animTarget"));
+          tier.tierData.targetQty(tierTag.getAttributeValue("targetQty"));
+          tier.tierData.playField(tierTag.getAttributeValue("playField"));
+          tier.tierData.X_Coord(tierTag.getAttributeValue("x"));
+          tier.tierData.Y_Coord(tierTag.getAttributeValue("y"));
+          tier.tierData.Z_Coord(tierTag.getAttributeValue("z"));
+          tier.tierData.distance(tierTag.getAttributeValue("distance"));
+          tier.tierData.yDistance(tierTag.getAttributeValue("yDistance"));
+          var animTags = tierTag.getChildElements();
+
+          for (var j = 0; j < animTags.length; j++) {
+            var animTag = animTags[j];
+            self.addAnimData(tier.tierData, null, true);
+            var animData = tier.tierData.animData()[tier.tierData.animData().length-1];
+            animData.name(animTag.getAttributeValue("name"));
+            animData.duration(animTag.getAttributeValue("duration"));
+          }
+          break;
 			}
 		}
 
